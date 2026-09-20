@@ -16,15 +16,20 @@ body{
   color:#182234;
 }
 
+button,input,textarea,select{font-family:inherit}
+
 header{
   background:linear-gradient(135deg,#003b1f,#006400,#009c45);
   color:white;
   padding:18px 25px;
   box-shadow:0 3px 12px #0003;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .header-inner{
-  max-width:1400px;
+  max-width:1500px;
   margin:auto;
   display:flex;
   align-items:center;
@@ -42,11 +47,12 @@ header{
   font-size:11px;
   color:#ffe600;
   letter-spacing:2px;
+  margin-top:4px;
 }
 
 .header-buttons{
   display:flex;
-  gap:8px;
+  gap:7px;
   flex-wrap:wrap;
 }
 
@@ -54,10 +60,14 @@ header{
   background:#ffffff18;
   color:white;
   border:1px solid #ffffff44;
+  padding:9px 12px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 .header-buttons button:hover{
-  background:#ffffff30;
+  background:#ffffff35;
 }
 
 .login-page{
@@ -72,53 +82,83 @@ header{
 }
 
 .login-box{
-  width:min(420px,92%);
+  width:min(430px,92%);
   background:white;
-  padding:35px;
-  border-radius:18px;
-  box-shadow:0 12px 40px #0002;
+  padding:38px;
+  border-radius:20px;
+  box-shadow:0 12px 45px #0002;
 }
 
 .login-box h1{
   color:#006400;
   text-align:center;
   margin-top:0;
+  margin-bottom:5px;
 }
 
 .login-box p{
   text-align:center;
   color:#666;
+  margin-bottom:25px;
+}
+
+.login-logo{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#006400,#00a94f);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto 18px;
+  font-size:25px;
+  font-weight:900;
 }
 
 .input{
   width:100%;
-  padding:14px;
+  padding:13px 14px;
   border:1px solid #ccd3dd;
   border-radius:8px;
-  margin:7px 0 15px;
-  font-size:16px;
+  margin:6px 0 15px;
+  font-size:15px;
+  background:white;
+}
+
+.input:focus,
+textarea:focus,
+select:focus{
+  outline:none;
+  border-color:#008f3d;
+  box-shadow:0 0 0 3px #008f3d18;
 }
 
 .btn{
   border:0;
-  padding:12px 17px;
+  padding:10px 15px;
   border-radius:8px;
   background:#006400;
   color:white;
   font-weight:bold;
   cursor:pointer;
+  transition:.2s;
 }
 
 .btn:hover{
-  background:#004900;
+  transform:translateY(-1px);
+  filter:brightness(.95);
 }
 
 .btn.red{background:#b40000}
 .btn.blue{background:#145ca8}
 .btn.gray{background:#66717e}
-.btn.yellow{
-  background:#e4ad00;
-  color:#111;
+.btn.yellow{background:#e4ad00;color:#111}
+.btn.orange{background:#e36b00}
+.btn.purple{background:#673ab7}
+.btn.small{
+  padding:7px 9px;
+  font-size:11px;
 }
 
 #loginMessage,
@@ -139,12 +179,17 @@ header{
   color:#980000;
 }
 
+.info{
+  background:#e4f0ff;
+  color:#145ca8;
+}
+
 .admin{
   display:none;
 }
 
 .main{
-  max-width:1400px;
+  max-width:1500px;
   margin:25px auto;
   padding:0 18px;
 }
@@ -158,10 +203,13 @@ header{
   margin-bottom:5px;
 }
 
+.dashboard-title p{
+  color:#666;
+}
+
 .stats{
   display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(170px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
   gap:15px;
   margin-bottom:25px;
 }
@@ -191,11 +239,19 @@ header{
   padding:22px;
   margin-bottom:22px;
   box-shadow:0 4px 15px #0000000d;
+  scroll-margin-top:100px;
 }
 
 .panel h2{
   margin-top:0;
   color:#006400;
+}
+
+.panel-subtitle{
+  color:#666;
+  font-size:13px;
+  margin-top:-8px;
+  margin-bottom:18px;
 }
 
 .form-grid{
@@ -222,6 +278,7 @@ select{
   border:1px solid #ccd3dd;
   border-radius:7px;
   min-height:44px;
+  background:white;
 }
 
 textarea{
@@ -238,12 +295,13 @@ textarea{
 
 .table-wrap{
   overflow:auto;
+  max-height:600px;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:900px;
+  min-width:950px;
 }
 
 th,td{
@@ -259,6 +317,7 @@ th{
   color:white;
   position:sticky;
   top:0;
+  z-index:2;
 }
 
 tr:hover td{
@@ -267,13 +326,15 @@ tr:hover td{
 
 .pill{
   display:inline-block;
-  padding:5px 8px;
+  padding:5px 9px;
   border-radius:15px;
   font-size:11px;
   font-weight:bold;
+  white-space:nowrap;
 }
 
-.pill-open{
+.pill-open,
+.pill-published{
   background:#d9f8e3;
   color:#08752a;
 }
@@ -288,9 +349,30 @@ tr:hover td{
   color:#8a5c00;
 }
 
-.pill-closed{
+.pill-closed,
+.pill-unpublished{
   background:#eee;
   color:#777;
+}
+
+.pill-draft{
+  background:#fff0d9;
+  color:#9a5b00;
+}
+
+.pill-pending{
+  background:#eee5ff;
+  color:#673ab7;
+}
+
+.pill-sent{
+  background:#d9f8e3;
+  color:#08752a;
+}
+
+.pill-failed{
+  background:#ffe0e0;
+  color:#980000;
 }
 
 .action-buttons{
@@ -304,10 +386,20 @@ tr:hover td{
   font-size:11px;
 }
 
+.search-row{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.search-row .input{
+  margin:0;
+}
+
 .checkbox-grid{
   display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(190px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
   gap:8px;
   margin:10px 0;
 }
@@ -324,13 +416,49 @@ tr:hover td{
 }
 
 .notification-preview{
-  padding:15px;
+  padding:18px;
   background:#f5f7fa;
+  border:1px solid #e2e6eb;
   border-radius:8px;
-  line-height:1.5;
+  line-height:1.6;
+  white-space:normal;
+  margin-top:15px;
 }
 
-.hidden{display:none!important}
+.notification-preview-title{
+  font-weight:bold;
+  font-size:17px;
+  color:#006400;
+  margin-bottom:10px;
+}
+
+.article-preview{
+  background:#f7faf8;
+  border-left:4px solid #006400;
+  padding:15px;
+  border-radius:7px;
+}
+
+.article-preview h3{
+  margin-top:0;
+  color:#006400;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.loading{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
 
 footer{
   text-align:center;
@@ -338,10 +466,48 @@ footer{
   color:#777;
 }
 
+.divider{
+  height:1px;
+  background:#e5e9ee;
+  margin:22px 0;
+}
+
+.help-box{
+  background:#eef8f1;
+  border:1px solid #cce8d3;
+  padding:14px;
+  border-radius:9px;
+  color:#275b37;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.counter{
+  font-size:11px;
+  color:#777;
+  text-align:right;
+  margin-top:3px;
+}
+
+@media(max-width:900px){
+  .search-row{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
 @media(max-width:700px){
+
   .header-inner{
     flex-direction:column;
     align-items:flex-start;
+  }
+
+  .header-buttons{
+    width:100%;
+  }
+
+  .header-buttons button{
+    flex:1 1 auto;
   }
 
   .form-grid{
@@ -351,17 +517,37 @@ footer{
   .full{
     grid-column:auto;
   }
+
+  .search-row{
+    grid-template-columns:1fr;
+  }
+
+  .panel{
+    padding:16px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stat strong{
+    font-size:25px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- =========================================================
+     LOGIN
+========================================================= -->
 
 <section id="loginPage" class="login-page">
 
   <div class="login-box">
+
+    <div class="login-logo">STV</div>
 
     <h1>SOBANUKIRWA TV</h1>
 
@@ -371,13 +557,15 @@ footer{
       id="username"
       class="input"
       type="text"
-      placeholder="Username">
+      placeholder="Username"
+      autocomplete="username">
 
     <input
       id="password"
       class="input"
       type="password"
-      placeholder="Password">
+      placeholder="Password"
+      autocomplete="current-password">
 
     <button
       class="btn"
@@ -393,7 +581,9 @@ footer{
 </section>
 
 
-<!-- ADMIN -->
+<!-- =========================================================
+     ADMIN
+========================================================= -->
 
 <section id="adminPage" class="admin">
 
@@ -407,6 +597,7 @@ footer{
     </div>
 
     <div class="header-buttons">
+
       <button onclick="showSection('dashboard')">
         Dashboard
       </button>
@@ -415,8 +606,16 @@ footer{
         Opportunities
       </button>
 
+      <button onclick="showSection('articlePanel')">
+        Articles
+      </button>
+
       <button onclick="showSection('sourcePanel')">
         Sources
+      </button>
+
+      <button onclick="showSection('subscriberPanel')">
+        Subscribers
       </button>
 
       <button onclick="showSection('notificationPanel')">
@@ -426,6 +625,7 @@ footer{
       <button onclick="logout()">
         Logout
       </button>
+
     </div>
 
   </div>
@@ -435,447 +635,919 @@ footer{
 
 <main class="main">
 
-  <div class="dashboard-title">
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
 
-    <h1>Admin Dashboard</h1>
+<div class="dashboard-title">
 
-    <p>
-      Manage opportunities, subscribers, sources and notifications.
-    </p>
+  <h1>Admin Dashboard</h1>
+
+  <p>
+    Manage opportunities, articles, sources,
+    subscribers and notifications.
+  </p>
+
+</div>
+
+<div class="stats" id="dashboard">
+
+  <div class="stat">
+    <small>Total Opportunities</small>
+    <strong id="statOpportunities">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Open</small>
+    <strong id="statOpen">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Closing Soon</small>
+    <strong id="statClosing">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Closed</small>
+    <strong id="statClosed">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Articles</small>
+    <strong id="statArticles">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Draft Articles</small>
+    <strong id="statDrafts">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Subscribers</small>
+    <strong id="statSubscribers">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Sources</small>
+    <strong id="statSources">0</strong>
+  </div>
+
+  <div class="stat">
+    <small>Notifications</small>
+    <strong id="statNotifications">0</strong>
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     OPPORTUNITY FORM
+========================================================= -->
+
+<section class="panel" id="opportunityPanel">
+
+  <h2 id="opportunityFormTitle">
+    Add New Opportunity
+  </h2>
+
+  <p class="panel-subtitle">
+    Create and manage opportunities shown on SOBANUKIRWA TV.
+  </p>
+
+  <input type="hidden" id="editId">
+
+  <div class="form-grid">
+
+    <div>
+      <label>Title *</label>
+      <input
+        class="input"
+        id="title"
+        placeholder="Opportunity title">
+    </div>
+
+    <div>
+      <label>Organization</label>
+      <input
+        class="input"
+        id="organization"
+        placeholder="Organization name">
+    </div>
+
+    <div>
+      <label>Category *</label>
+      <select id="category">
+        <option value="">Select category</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Status</label>
+      <select id="status">
+        <option value="OPEN">OPEN</option>
+        <option value="UPCOMING">UPCOMING</option>
+        <option value="CLOSING SOON">CLOSING SOON</option>
+        <option value="CLOSED">CLOSED</option>
+      </select>
+    </div>
+
+    <div class="full">
+      <label>Description</label>
+      <textarea
+        id="description"
+        placeholder="Describe this opportunity..."></textarea>
+    </div>
+
+    <div class="full">
+      <label>Requirements</label>
+      <textarea
+        id="requirements"
+        placeholder="Requirements..."></textarea>
+    </div>
+
+    <div class="full">
+      <label>Benefits</label>
+      <textarea
+        id="benefits"
+        placeholder="Benefits..."></textarea>
+    </div>
+
+    <div>
+      <label>Source URL</label>
+      <input
+        class="input"
+        id="sourceUrl"
+        type="url"
+        placeholder="https://example.com/source">
+    </div>
+
+    <div>
+      <label>Application URL</label>
+      <input
+        class="input"
+        id="applicationUrl"
+        type="url"
+        placeholder="https://example.com/apply">
+    </div>
+
+    <div>
+      <label>Start Date</label>
+      <input
+        class="input"
+        id="startDate"
+        type="date">
+    </div>
+
+    <div>
+      <label>Start Time</label>
+      <input
+        class="input"
+        id="startTime"
+        type="time">
+    </div>
+
+    <div>
+      <label>Deadline Date</label>
+      <input
+        class="input"
+        id="deadlineDate"
+        type="date">
+    </div>
+
+    <div>
+      <label>Deadline Time</label>
+      <input
+        class="input"
+        id="deadlineTime"
+        type="time">
+    </div>
+
+    <div>
+      <label>
+        <input id="featured" type="checkbox">
+        Featured Opportunity
+      </label>
+    </div>
+
+    <div>
+      <label>
+        <input
+          id="published"
+          type="checkbox"
+          checked>
+        Published
+      </label>
+    </div>
 
   </div>
 
+  <div class="form-actions">
 
-  <!-- STATS -->
+    <button
+      class="btn"
+      onclick="saveOpportunity()">
+      Save Opportunity
+    </button>
 
-  <div class="stats" id="dashboard">
+    <button
+      class="btn gray"
+      onclick="clearOpportunityForm()">
+      Clear
+    </button>
 
-    <div class="stat">
-      <small>Total Opportunities</small>
-      <strong id="statOpportunities">0</strong>
+  </div>
+
+  <div id="opportunityMessage"
+       class="notice"></div>
+
+</section>
+
+
+<!-- =========================================================
+     OPPORTUNITY MANAGEMENT
+========================================================= -->
+
+<section class="panel">
+
+  <h2>Opportunity Management</h2>
+
+  <div class="search-row">
+
+    <input
+      id="opportunitySearch"
+      class="input"
+      placeholder="Search opportunities..."
+      oninput="renderOpportunityTable()">
+
+    <select
+      id="opportunityFilterCategory"
+      onchange="renderOpportunityTable()">
+      <option value="">All Categories</option>
+    </select>
+
+    <select
+      id="opportunityFilterStatus"
+      onchange="renderOpportunityTable()">
+      <option value="">All Status</option>
+      <option value="OPEN">OPEN</option>
+      <option value="UPCOMING">UPCOMING</option>
+      <option value="CLOSING SOON">CLOSING SOON</option>
+      <option value="CLOSED">CLOSED</option>
+    </select>
+
+    <button
+      class="btn blue"
+      onclick="loadOpportunities()">
+      Refresh
+    </button>
+
+  </div>
+
+  <div class="table-wrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Organization</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Published</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="opportunityTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ARTICLES
+========================================================= -->
+
+<section class="panel" id="articlePanel">
+
+  <h2 id="articleFormTitle">
+    Add New Article
+  </h2>
+
+  <p class="panel-subtitle">
+    Articles collected from different sources are saved as
+    drafts first. Only PUBLISHED articles should appear publicly.
+  </p>
+
+  <input type="hidden" id="articleId">
+
+  <div class="form-grid">
+
+    <div class="full">
+      <label>Article Title *</label>
+
+      <input
+        id="articleTitle"
+        class="input"
+        placeholder="Article title">
     </div>
 
-    <div class="stat">
-      <small>Open</small>
-      <strong id="statOpen">0</strong>
+    <div>
+      <label>Category *</label>
+
+      <select id="articleCategory">
+        <option value="">Select category</option>
+      </select>
     </div>
 
-    <div class="stat">
-      <small>Closing Soon</small>
-      <strong id="statClosing">0</strong>
+    <div>
+      <label>Status</label>
+
+      <select id="articleStatus">
+        <option value="DRAFT">DRAFT</option>
+        <option value="PENDING">PENDING</option>
+        <option value="PUBLISHED">PUBLISHED</option>
+        <option value="UNPUBLISHED">UNPUBLISHED</option>
+      </select>
     </div>
 
-    <div class="stat">
-      <small>Closed</small>
-      <strong id="statClosed">0</strong>
+    <div>
+      <label>Source Name</label>
+
+      <input
+        id="articleSourceName"
+        class="input"
+        placeholder="University of Rwanda, MIFOTRA, TVET...">
     </div>
 
-    <div class="stat">
-      <small>Subscribers</small>
-      <strong id="statSubscribers">0</strong>
+    <div>
+      <label>Source URL</label>
+
+      <input
+        id="articleSourceUrl"
+        class="input"
+        type="url"
+        placeholder="https://example.com/article">
     </div>
 
-    <div class="stat">
-      <small>Sources</small>
-      <strong id="statSources">0</strong>
+    <div>
+      <label>Application / Original Article URL</label>
+
+      <input
+        id="articleOriginalUrl"
+        class="input"
+        type="url"
+        placeholder="https://example.com/original">
+    </div>
+
+    <div>
+      <label>Author</label>
+
+      <input
+        id="articleAuthor"
+        class="input"
+        placeholder="SOBANUKIRWA TV">
+    </div>
+
+    <div>
+      <label>Image URL</label>
+
+      <input
+        id="articleImage"
+        class="input"
+        type="url"
+        placeholder="https://example.com/image.jpg">
+    </div>
+
+    <div class="full">
+      <label>Short Summary</label>
+
+      <textarea
+        id="articleSummary"
+        placeholder="Write a short summary..."></textarea>
+
+      <div class="counter">
+        <span id="summaryCount">0</span> characters
+      </div>
+    </div>
+
+    <div class="full">
+      <label>Article Content</label>
+
+      <textarea
+        id="articleContent"
+        style="min-height:220px"
+        placeholder="Write the article content or editorial summary here..."></textarea>
+    </div>
+
+    <div>
+      <label>
+        <input id="articleFeatured" type="checkbox">
+        Featured Article
+      </label>
     </div>
 
   </div>
 
+  <div class="help-box" style="margin-top:15px">
 
-  <!-- OPPORTUNITY FORM -->
+    <strong>Editorial workflow:</strong>
 
-  <section class="panel" id="opportunityPanel">
+    Source → Draft/Pending → Admin Review → Publish.
 
-    <h2 id="opportunityFormTitle">
-      Add New Opportunity
-    </h2>
+    Do not copy full third-party articles without permission.
+    Prefer a summary, source attribution and a link to the
+    original article.
 
-    <input type="hidden" id="editId">
+  </div>
 
-    <div class="form-grid">
+  <div class="form-actions">
 
-      <div>
-        <label>Title *</label>
-        <input class="input"
-               id="title"
-               placeholder="Opportunity title">
-      </div>
+    <button
+      class="btn"
+      onclick="saveArticle()">
+      Save Article
+    </button>
 
-      <div>
-        <label>Organization</label>
-        <input class="input"
-               id="organization"
-               placeholder="Organization name">
-      </div>
+    <button
+      class="btn gray"
+      onclick="clearArticleForm()">
+      Clear
+    </button>
 
-      <div>
-        <label>Category *</label>
-        <select id="category"></select>
-      </div>
+    <button
+      class="btn blue"
+      onclick="loadArticles()">
+      Refresh Articles
+    </button>
 
-      <div>
-        <label>Status</label>
-        <select id="status">
-          <option value="OPEN">OPEN</option>
-          <option value="UPCOMING">UPCOMING</option>
-          <option value="CLOSING SOON">CLOSING SOON</option>
-          <option value="CLOSED">CLOSED</option>
-        </select>
-      </div>
+  </div>
 
-      <div class="full">
-        <label>Description</label>
-        <textarea id="description"
-          placeholder="Describe this opportunity..."></textarea>
-      </div>
+  <div id="articleMessage"
+       class="notice"></div>
 
-      <div class="full">
-        <label>Requirements</label>
-        <textarea id="requirements"
-          placeholder="Requirements..."></textarea>
-      </div>
+</section>
 
-      <div class="full">
-        <label>Benefits</label>
-        <textarea id="benefits"
-          placeholder="Benefits..."></textarea>
-      </div>
 
-      <div>
-        <label>Source URL</label>
-        <input class="input"
-               id="sourceUrl"
-               type="url"
-               placeholder="https://example.com/source">
-      </div>
+<!-- =========================================================
+     ARTICLE MANAGEMENT
+========================================================= -->
 
-      <div>
-        <label>Application URL</label>
-        <input class="input"
-               id="applicationUrl"
-               type="url"
-               placeholder="https://example.com/apply">
-      </div>
+<section class="panel">
 
-      <div>
-        <label>Start Date</label>
-        <input class="input"
-               id="startDate"
-               type="date">
-      </div>
+  <h2>Article Management</h2>
 
-      <div>
-        <label>Start Time</label>
-        <input class="input"
-               id="startTime"
-               type="time">
-      </div>
+  <div class="search-row">
 
-      <div>
-        <label>Deadline Date</label>
-        <input class="input"
-               id="deadlineDate"
-               type="date">
-      </div>
+    <input
+      id="articleSearch"
+      class="input"
+      placeholder="Search articles..."
+      oninput="renderArticleTable()">
 
-      <div>
-        <label>Deadline Time</label>
-        <input class="input"
-               id="deadlineTime"
-               type="time">
-      </div>
+    <select
+      id="articleFilterCategory"
+      onchange="renderArticleTable()">
+      <option value="">All Categories</option>
+    </select>
 
-      <div>
-        <label>
-          <input id="featured" type="checkbox">
-          Featured Opportunity
-        </label>
-      </div>
+    <select
+      id="articleFilterStatus"
+      onchange="renderArticleTable()">
+      <option value="">All Status</option>
+      <option value="DRAFT">DRAFT</option>
+      <option value="PENDING">PENDING</option>
+      <option value="PUBLISHED">PUBLISHED</option>
+      <option value="UNPUBLISHED">UNPUBLISHED</option>
+    </select>
 
-      <div>
-        <label>
-          <input id="published"
-                 type="checkbox"
-                 checked>
-          Published
-        </label>
-      </div>
+    <button
+      class="btn blue"
+      onclick="loadArticles()">
+      Refresh
+    </button>
+
+  </div>
+
+  <div class="table-wrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Source</th>
+          <th>Status</th>
+          <th>Featured</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="articleTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOURCES
+========================================================= -->
+
+<section class="panel" id="sourcePanel">
+
+  <h2>Source Management</h2>
+
+  <p class="panel-subtitle">
+    Add websites and organizations from which SOBANUKIRWA TV
+    collects opportunity or article information.
+  </p>
+
+  <div class="form-grid">
+
+    <div>
+      <label>Source Name *</label>
+
+      <input
+        id="sourceName"
+        class="input"
+        placeholder="University of Rwanda">
+    </div>
+
+    <div>
+      <label>Source URL *</label>
+
+      <input
+        id="sourceUrlAdmin"
+        class="input"
+        type="url"
+        placeholder="https://example.com">
+    </div>
+
+    <div>
+      <label>Category</label>
+
+      <select id="sourceCategory">
+        <option value="">Select category</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Active</label>
+
+      <select id="sourceActive">
+        <option value="YES">YES</option>
+        <option value="NO">NO</option>
+      </select>
+    </div>
+
+    <div class="full">
+
+      <label>Description</label>
+
+      <textarea
+        id="sourceDescription"
+        placeholder="Source description"></textarea>
 
     </div>
 
-    <div class="form-actions">
+  </div>
 
-      <button class="btn"
-              onclick="saveOpportunity()">
-        Save Opportunity
-      </button>
+  <div class="form-actions">
 
-      <button class="btn gray"
-              onclick="clearOpportunityForm()">
-        Clear
-      </button>
+    <button
+      class="btn"
+      onclick="addSource()">
+      Add Source
+    </button>
 
-    </div>
+    <button
+      class="btn blue"
+      onclick="loadSources()">
+      Refresh Sources
+    </button>
 
-    <div id="opportunityMessage"
-         class="notice"></div>
+    <button
+      class="btn purple"
+      onclick="scanSources()">
+      Scan Active Sources
+    </button>
 
-  </section>
+  </div>
 
+  <div id="sourceMessage"
+       class="notice"></div>
 
-  <!-- OPPORTUNITIES TABLE -->
+  <div class="table-wrap">
 
-  <section class="panel">
+    <table>
 
-    <h2>Opportunity Management</h2>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>URL</th>
+          <th>Category</th>
+          <th>Active</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-    <div class="form-actions">
+      <tbody id="sourceTable"></tbody>
 
-      <button class="btn blue"
-              onclick="loadAll()">
-        Refresh
-      </button>
+    </table>
 
-    </div>
+  </div>
 
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Organization</th>
-            <th>Deadline</th>
-            <th>Status</th>
-            <th>Published</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody id="opportunityTable"></tbody>
-
-      </table>
-
-    </div>
-
-  </section>
+</section>
 
 
-  <!-- SOURCE PANEL -->
+<!-- =========================================================
+     SUBSCRIBERS
+========================================================= -->
 
-  <section class="panel" id="sourcePanel">
+<section class="panel" id="subscriberPanel">
 
-    <h2>Source Management</h2>
+  <h2>Subscribers</h2>
 
-    <div class="form-grid">
+  <div class="search-row">
 
-      <div>
-        <label>Source Name</label>
-        <input id="sourceName"
-               class="input"
-               placeholder="Website / organization">
-      </div>
+    <input
+      id="subscriberSearch"
+      class="input"
+      placeholder="Search email or name..."
+      oninput="renderSubscribers()">
 
-      <div>
-        <label>Source URL</label>
-        <input id="sourceUrlAdmin"
-               class="input"
-               type="url"
-               placeholder="https://example.com">
-      </div>
+    <select
+      id="subscriberStatusFilter"
+      onchange="renderSubscribers()">
+      <option value="">All Status</option>
+      <option value="ACTIVE">ACTIVE</option>
+      <option value="UNSUBSCRIBED">UNSUBSCRIBED</option>
+    </select>
 
-      <div class="full">
-        <label>Description</label>
-        <textarea id="sourceDescription"
-          placeholder="Source description"></textarea>
-      </div>
+    <div></div>
 
-    </div>
+    <button
+      class="btn blue"
+      onclick="loadSubscribers()">
+      Refresh
+    </button>
 
-    <div class="form-actions">
+  </div>
 
-      <button class="btn"
-              onclick="addSource()">
-        Add Source
-      </button>
+  <div class="table-wrap">
 
-      <button class="btn blue"
-              onclick="loadSources()">
-        Refresh Sources
-      </button>
+    <table>
 
-    </div>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Categories</th>
+          <th>Status</th>
+          <th>Subscribed</th>
+        </tr>
+      </thead>
 
-    <div id="sourceMessage"
-         class="notice"></div>
+      <tbody id="subscriberTable"></tbody>
 
-    <div class="table-wrap">
+    </table>
 
-      <table>
+  </div>
 
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>URL</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody id="sourceTable"></tbody>
-
-      </table>
-
-    </div>
-
-  </section>
+</section>
 
 
-  <!-- SUBSCRIBERS -->
+<!-- =========================================================
+     NOTIFICATION CENTER
+========================================================= -->
 
-  <section class="panel">
+<section class="panel" id="notificationPanel">
 
-    <h2>Subscribers</h2>
+  <h2>Notification Center</h2>
 
-    <div class="form-actions">
+  <p class="panel-subtitle">
+    Notifications are sent only when the administrator presses
+    SEND NOTIFICATION. Adding an opportunity or article does not
+    automatically send an email.
+  </p>
 
-      <button class="btn blue"
-              onclick="loadSubscribers()">
-        Refresh Subscribers
-      </button>
+  <div class="form-grid">
+
+    <div>
+
+      <label>Category</label>
+
+      <select id="notificationCategory">
+        <option value="">Select category</option>
+      </select>
 
     </div>
 
-    <div class="table-wrap">
+    <div>
 
-      <table>
+      <label>Recipients</label>
 
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Categories</th>
-            <th>Status</th>
-            <th>Subscribed</th>
-          </tr>
-        </thead>
+      <select id="recipientType">
 
-        <tbody id="subscriberTable"></tbody>
+        <option value="CATEGORY">
+          Subscribers in selected category
+        </option>
 
-      </table>
+        <option value="ALL">
+          All Active Subscribers
+        </option>
+
+      </select>
 
     </div>
 
-  </section>
+    <div class="full">
 
+      <label>Notification Subject *</label>
 
-  <!-- NOTIFICATIONS -->
-
-  <section class="panel"
-           id="notificationPanel">
-
-    <h2>Notification Center</h2>
-
-    <p>
-      Adding an opportunity does NOT automatically send emails.
-      Use this section when you want to notify subscribers.
-    </p>
-
-    <div class="form-grid">
-
-      <div>
-        <label>Category</label>
-        <select id="notificationCategory"></select>
-      </div>
-
-      <div>
-        <label>Recipients</label>
-        <select id="recipientType">
-          <option value="CATEGORY">
-            Subscribers in selected category
-          </option>
-
-          <option value="ALL">
-            All Active Subscribers
-          </option>
-        </select>
-      </div>
-
-      <div class="full">
-        <label>Notification Subject</label>
-        <input id="notificationSubject"
-               class="input"
-               placeholder="New opportunity from SOBANUKIRWA TV">
-      </div>
-
-      <div class="full">
-        <label>Message</label>
-
-        <textarea id="notificationMessage"
-          placeholder="Write your notification message here..."></textarea>
-      </div>
+      <input
+        id="notificationSubject"
+        class="input"
+        placeholder="Notification subject">
 
     </div>
 
-    <div class="notification-preview"
-         id="notificationPreview">
-      Your notification preview will appear here.
-    </div>
+    <div class="full">
 
-    <div class="form-actions">
+      <label>Message *</label>
 
-      <button class="btn"
-              onclick="sendNotification()">
-        SEND NOTIFICATION
-      </button>
-
-      <button class="btn yellow"
-              onclick="sendTestEmail()">
-        SEND TEST EMAIL
-      </button>
+      <textarea
+        id="notificationMessage"
+        style="min-height:200px"
+        placeholder="Write your notification exactly as you want subscribers to receive it..."></textarea>
 
     </div>
 
-    <div id="notificationMessageBox"
-         class="notice"></div>
+  </div>
 
-  </section>
+  <div class="notification-preview"
+       id="notificationPreview">
 
-
-  <!-- SYSTEM -->
-
-  <section class="panel">
-
-    <h2>System</h2>
-
-    <div class="form-actions">
-
-      <button class="btn blue"
-              onclick="checkSystem()">
-        Check System
-      </button>
-
-      <button class="btn yellow"
-              onclick="sendTestEmail()">
-        Test Admin Email
-      </button>
-
-      <button class="btn red"
-              onclick="logout()">
-        Logout
-      </button>
-
+    <div class="notification-preview-title">
+      Notification Preview
     </div>
 
-    <div id="systemMessage"
-         class="notice"></div>
+    Your notification preview will appear here.
 
-  </section>
+  </div>
+
+  <div class="form-actions">
+
+    <button
+      class="btn"
+      onclick="sendNotification()">
+      SEND NOTIFICATION
+    </button>
+
+    <button
+      class="btn yellow"
+      onclick="sendTestEmail()">
+      SEND TEST EMAIL
+    </button>
+
+    <button
+      class="btn gray"
+      onclick="clearNotificationForm()">
+      Clear
+    </button>
+
+  </div>
+
+  <div id="notificationMessageBox"
+       class="notice"></div>
+
+</section>
+
+
+<!-- =========================================================
+     NOTIFICATION HISTORY
+========================================================= -->
+
+<section class="panel">
+
+  <h2>Notification History</h2>
+
+  <p class="panel-subtitle">
+    Every notification successfully processed by the system
+    can be recorded here. You can delete a history record
+    without changing the email already delivered.
+  </p>
+
+  <div class="search-row">
+
+    <input
+      id="notificationSearch"
+      class="input"
+      placeholder="Search subject, message or category..."
+      oninput="renderNotificationTable()">
+
+    <select
+      id="notificationFilterStatus"
+      onchange="renderNotificationTable()">
+
+      <option value="">All Status</option>
+      <option value="SENT">SENT</option>
+      <option value="FAILED">FAILED</option>
+
+    </select>
+
+    <div></div>
+
+    <button
+      class="btn blue"
+      onclick="loadNotifications()">
+      Refresh
+    </button>
+
+  </div>
+
+  <div class="table-wrap">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>ID</th>
+          <th>Subject</th>
+          <th>Message</th>
+          <th>Category</th>
+          <th>Recipients</th>
+          <th>Sent At</th>
+          <th>Sent By</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="notificationTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SYSTEM
+========================================================= -->
+
+<section class="panel">
+
+  <h2>System</h2>
+
+  <div class="form-actions">
+
+    <button
+      class="btn blue"
+      onclick="checkSystem()">
+      Check System
+    </button>
+
+    <button
+      class="btn yellow"
+      onclick="sendTestEmail()">
+      Test Admin Email
+    </button>
+
+    <button
+      class="btn purple"
+      onclick="loadAll()">
+      Reload Everything
+    </button>
+
+    <button
+      class="btn red"
+      onclick="logout()">
+      Logout
+    </button>
+
+  </div>
+
+  <div id="systemMessage"
+       class="notice"></div>
+
+</section>
 
 </main>
 
@@ -888,38 +1560,66 @@ footer{
 
 <script>
 
+/* =========================================================
+   CONFIG
+========================================================= */
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxKH0B-LKpUBrZ5Ne8u3M9HoY2-wDdsMfn_zbidYfsxt2Xq1FbKXhDLt4vPuimhq4o/exec";
 
+const ADMIN_EMAIL =
+"www.sobanukirwa.rw@gmail.com";
+
 let categories = [];
 let opportunities = [];
+let articles = [];
 let sources = [];
 let subscribers = [];
+let notifications = [];
 
 let loggedIn = false;
 
 
-/* =========================
-   API
-========================= */
+/* =========================================================
+   API GET
+========================================================= */
 
 async function apiGet(params={}){
 
   const url = new URL(API_URL);
 
-  Object.keys(params).forEach(k=>{
-    if(params[k] !== undefined &&
-       params[k] !== null){
-      url.searchParams.set(k,params[k]);
+  Object.keys(params).forEach(key=>{
+
+    if(
+      params[key] !== undefined &&
+      params[key] !== null
+    ){
+
+      url.searchParams.set(
+        key,
+        params[key]
+      );
+
     }
+
   });
 
   const response =
     await fetch(url.toString());
 
+  if(!response.ok){
+    throw new Error(
+      "HTTP " + response.status
+    );
+  }
+
   return await response.json();
 }
 
+
+/* =========================================================
+   API POST
+========================================================= */
 
 async function apiPost(data){
 
@@ -929,24 +1629,37 @@ async function apiPost(data){
       body:new URLSearchParams(data)
     });
 
+  if(!response.ok){
+    throw new Error(
+      "HTTP " + response.status
+    );
+  }
+
   return await response.json();
 }
 
 
-/* =========================
+/* =========================================================
    LOGIN
-========================= */
+========================================================= */
 
 async function login(){
 
   const username =
-    document.getElementById("username").value.trim();
+    document
+      .getElementById("username")
+      .value
+      .trim();
 
   const password =
-    document.getElementById("password").value;
+    document
+      .getElementById("password")
+      .value;
 
   const message =
-    document.getElementById("loginMessage");
+    document.getElementById(
+      "loginMessage"
+    );
 
   if(!username || !password){
 
@@ -963,27 +1676,25 @@ async function login(){
 
     const result =
       await apiPost({
+
         action:"login",
+
         username:username,
+
         password:password
+
       });
 
     if(result.success){
 
-      loggedIn = true;
+      loggedIn=true;
 
       sessionStorage.setItem(
         "stv_admin_login",
         "YES"
       );
 
-      document
-        .getElementById("loginPage")
-        .style.display="none";
-
-      document
-        .getElementById("adminPage")
-        .style.display="block";
+      showAdmin();
 
       await loadAll();
 
@@ -991,7 +1702,8 @@ async function login(){
 
       showMessage(
         message,
-        result.message || "Invalid login.",
+        result.message ||
+        "Invalid username or password.",
         false
       );
 
@@ -1006,9 +1718,32 @@ async function login(){
       "Unable to connect to Apps Script.",
       false
     );
+
   }
+
 }
 
+
+/* =========================================================
+   SHOW ADMIN
+========================================================= */
+
+function showAdmin(){
+
+  document
+    .getElementById("loginPage")
+    .style.display="none";
+
+  document
+    .getElementById("adminPage")
+    .style.display="block";
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 function logout(){
 
@@ -1019,27 +1754,48 @@ function logout(){
   );
 
   location.reload();
+
 }
 
 
-/* =========================
-   LOAD
-========================= */
+/* =========================================================
+   LOAD ALL
+========================================================= */
 
 async function loadAll(){
 
-  await loadCategories();
-  await loadOpportunities();
-  await loadSources();
-  await loadSubscribers();
-  await loadStats();
+  try{
+
+    await loadCategories();
+
+    await Promise.allSettled([
+
+      loadOpportunities(),
+
+      loadArticles(),
+
+      loadSources(),
+
+      loadSubscribers(),
+
+      loadNotifications(),
+
+      loadStats()
+
+    ]);
+
+  }catch(error){
+
+    console.error(error);
+
+  }
 
 }
 
 
-/* =========================
+/* =========================================================
    CATEGORIES
-========================= */
+========================================================= */
 
 async function loadCategories(){
 
@@ -1055,7 +1811,9 @@ async function loadCategories(){
       categories =
         result.categories || [];
 
-      populateCategories();
+    }else{
+
+      categories=[];
 
     }
 
@@ -1063,16 +1821,35 @@ async function loadCategories(){
 
     console.error(error);
 
+    categories=[];
+
   }
+
+  populateCategoryFields();
 
 }
 
 
-function populateCategories(){
+/* =========================================================
+   POPULATE CATEGORY FIELDS
+========================================================= */
+
+function populateCategoryFields(){
 
   const fields = [
+
     "category",
-    "notificationCategory"
+
+    "notificationCategory",
+
+    "articleCategory",
+
+    "sourceCategory",
+
+    "opportunityFilterCategory",
+
+    "articleFilterCategory"
+
   ];
 
   fields.forEach(id=>{
@@ -1082,8 +1859,23 @@ function populateCategories(){
 
     if(!select) return;
 
+    const current =
+      select.value;
+
+    let firstOption =
+      "Select category";
+
+    if(
+      id === "opportunityFilterCategory" ||
+      id === "articleFilterCategory"
+    ){
+
+      firstOption="All Categories";
+
+    }
+
     select.innerHTML =
-      `<option value="">Select category</option>`;
+      `<option value="">${firstOption}</option>`;
 
     categories.forEach(category=>{
 
@@ -1091,48 +1883,46 @@ function populateCategories(){
         document.createElement("option");
 
       option.value=category;
+
       option.textContent=category;
 
       select.appendChild(option);
 
     });
 
+    if(current){
+      select.value=current;
+    }
+
   });
 
 }
 
 
-/* =========================
-   OPPORTUNITIES
-========================= */
+/* =========================================================
+   OPPORTUNITIES LOAD
+========================================================= */
 
 async function loadOpportunities(){
 
   try{
 
-    const result =
+    let result =
       await apiGet({
         action:"getOpportunities"
       });
 
     if(!result.success){
 
-      const alternative =
+      result =
         await apiGet({
           action:"opportunities"
         });
 
-      if(alternative.success){
-        opportunities =
-          alternative.opportunities || [];
-      }
-
-    }else{
-
-      opportunities =
-        result.opportunities || [];
-
     }
+
+    opportunities =
+      result.opportunities || [];
 
     renderOpportunityTable();
 
@@ -1140,10 +1930,18 @@ async function loadOpportunities(){
 
     console.error(error);
 
+    opportunities=[];
+
+    renderOpportunityTable();
+
   }
 
 }
 
+
+/* =========================================================
+   OPPORTUNITY TABLE
+========================================================= */
 
 function renderOpportunityTable(){
 
@@ -1152,23 +1950,90 @@ function renderOpportunityTable(){
       "opportunityTable"
     );
 
-  if(!opportunities.length){
+  const search =
+    document
+      .getElementById(
+        "opportunitySearch"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+  const category =
+    document
+      .getElementById(
+        "opportunityFilterCategory"
+      )
+      .value;
+
+  const status =
+    document
+      .getElementById(
+        "opportunityFilterStatus"
+      )
+      .value;
+
+  const filtered =
+    opportunities.filter(item=>{
+
+      const text =
+        [
+
+          item.Title,
+
+          item.Organization,
+
+          item.Description,
+
+          item.Category
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      if(search && !text.includes(search)){
+        return false;
+      }
+
+      if(
+        category &&
+        String(item.Category || "") !== category
+      ){
+        return false;
+      }
+
+      if(
+        status &&
+        String(item.Status || "") !== status
+      ){
+        return false;
+      }
+
+      return true;
+
+    });
+
+  if(!filtered.length){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="8">
+        <td colspan="8" class="empty">
           No opportunities found.
         </td>
       </tr>`;
 
     return;
+
   }
 
   tbody.innerHTML =
-    opportunities.map(item=>{
+    filtered.map(item=>{
 
       const status =
-        String(item.Status || "OPEN");
+        String(
+          item.Status ||
+          "OPEN"
+        ).toUpperCase();
 
       const statusClass =
         status === "CLOSED"
@@ -1180,25 +2045,37 @@ function renderOpportunityTable(){
           : "pill-open";
 
       const id =
-        item.ID || item.Id || item.id || "";
+        item.ID ||
+        item.Id ||
+        item.id ||
+        "";
 
       return `
+
       <tr>
 
-        <td>${escapeHTML(id)}</td>
+        <td>
+          ${escapeHTML(id)}
+        </td>
 
         <td>
           <strong>
-            ${escapeHTML(item.Title || "")}
+            ${escapeHTML(
+              item.Title || ""
+            )}
           </strong>
         </td>
 
         <td>
-          ${escapeHTML(item.Category || "")}
+          ${escapeHTML(
+            item.Category || ""
+          )}
         </td>
 
         <td>
-          ${escapeHTML(item.Organization || "")}
+          ${escapeHTML(
+            item.Organization || ""
+          )}
         </td>
 
         <td>
@@ -1217,7 +2094,9 @@ function renderOpportunityTable(){
         </td>
 
         <td>
-          ${String(item.Published || "").toUpperCase()}
+          ${escapeHTML(
+            item.Published || ""
+          )}
         </td>
 
         <td>
@@ -1225,13 +2104,13 @@ function renderOpportunityTable(){
           <div class="action-buttons">
 
             <button
-              class="btn blue"
-              onclick='editOpportunity(${JSON.stringify(item)})'>
+              class="btn blue small"
+              onclick='editOpportunity(${safeJSON(item)})'>
               Edit
             </button>
 
             <button
-              class="btn red"
+              class="btn red small"
               onclick="deleteOpportunity('${escapeJS(id)}')">
               Delete
             </button>
@@ -1241,41 +2120,55 @@ function renderOpportunityTable(){
         </td>
 
       </tr>
+
       `;
 
     }).join("");
+
 }
 
 
-/* =========================
+/* =========================================================
    SAVE OPPORTUNITY
-========================= */
+========================================================= */
 
 async function saveOpportunity(){
 
   const editId =
-    document.getElementById("editId").value.trim();
+    document
+      .getElementById("editId")
+      .value
+      .trim();
 
   const title =
-    document.getElementById("title").value.trim();
+    document
+      .getElementById("title")
+      .value
+      .trim();
 
   const category =
-    document.getElementById("category").value;
+    document
+      .getElementById("category")
+      .value;
+
+  const box =
+    document.getElementById(
+      "opportunityMessage"
+    );
 
   if(!title || !category){
 
     showMessage(
-      document.getElementById(
-        "opportunityMessage"
-      ),
+      box,
       "Title and category are required.",
       false
     );
 
     return;
+
   }
 
-  const data = {
+  const data={
 
     action:
       editId
@@ -1289,59 +2182,37 @@ async function saveOpportunity(){
     category:category,
 
     organization:
-      document
-        .getElementById("organization")
-        .value.trim(),
+      getValue("organization"),
 
     description:
-      document
-        .getElementById("description")
-        .value.trim(),
+      getValue("description"),
 
     requirements:
-      document
-        .getElementById("requirements")
-        .value.trim(),
+      getValue("requirements"),
 
     benefits:
-      document
-        .getElementById("benefits")
-        .value.trim(),
+      getValue("benefits"),
 
     sourceUrl:
-      document
-        .getElementById("sourceUrl")
-        .value.trim(),
+      getValue("sourceUrl"),
 
     applicationUrl:
-      document
-        .getElementById("applicationUrl")
-        .value.trim(),
+      getValue("applicationUrl"),
 
     startDate:
-      document
-        .getElementById("startDate")
-        .value,
+      getValue("startDate"),
 
     startTime:
-      document
-        .getElementById("startTime")
-        .value,
+      getValue("startTime"),
 
     deadlineDate:
-      document
-        .getElementById("deadlineDate")
-        .value,
+      getValue("deadlineDate"),
 
     deadlineTime:
-      document
-        .getElementById("deadlineTime")
-        .value,
+      getValue("deadlineTime"),
 
     status:
-      document
-        .getElementById("status")
-        .value,
+      getValue("status"),
 
     featured:
       document
@@ -1367,9 +2238,7 @@ async function saveOpportunity(){
     if(result.success){
 
       showMessage(
-        document.getElementById(
-          "opportunityMessage"
-        ),
+        box,
         result.message ||
         "Opportunity saved successfully.",
         true
@@ -1378,14 +2247,13 @@ async function saveOpportunity(){
       clearOpportunityForm();
 
       await loadOpportunities();
+
       await loadStats();
 
     }else{
 
       showMessage(
-        document.getElementById(
-          "opportunityMessage"
-        ),
+        box,
         result.message ||
         "Unable to save opportunity.",
         false
@@ -1398,90 +2266,137 @@ async function saveOpportunity(){
     console.error(error);
 
     showMessage(
-      document.getElementById(
-        "opportunityMessage"
-      ),
+      box,
       "Connection error.",
       false
     );
+
   }
+
 }
 
 
-/* =========================
-   EDIT
-========================= */
+/* =========================================================
+   EDIT OPPORTUNITY
+========================================================= */
 
 function editOpportunity(item){
 
-  document.getElementById("editId").value =
-    item.ID || item.Id || item.id || "";
+  setValue(
+    "editId",
+    item.ID ||
+    item.Id ||
+    item.id ||
+    ""
+  );
 
-  document.getElementById("title").value =
-    item.Title || "";
+  setValue(
+    "title",
+    item.Title || ""
+  );
 
-  document.getElementById("category").value =
-    item.Category || "";
+  setValue(
+    "category",
+    item.Category || ""
+  );
 
-  document.getElementById("organization").value =
-    item.Organization || "";
+  setValue(
+    "organization",
+    item.Organization || ""
+  );
 
-  document.getElementById("description").value =
-    item.Description || "";
+  setValue(
+    "description",
+    item.Description || ""
+  );
 
-  document.getElementById("requirements").value =
-    item.Requirements || "";
+  setValue(
+    "requirements",
+    item.Requirements || ""
+  );
 
-  document.getElementById("benefits").value =
-    item.Benefits || "";
+  setValue(
+    "benefits",
+    item.Benefits || ""
+  );
 
-  document.getElementById("sourceUrl").value =
-    item["Source URL"] || "";
+  setValue(
+    "sourceUrl",
+    item["Source URL"] || ""
+  );
 
-  document.getElementById("applicationUrl").value =
-    item["Application URL"] || "";
+  setValue(
+    "applicationUrl",
+    item["Application URL"] || ""
+  );
 
-  document.getElementById("startDate").value =
-    item["Start Date"] || "";
+  setValue(
+    "startDate",
+    item["Start Date"] || ""
+  );
 
-  document.getElementById("startTime").value =
-    item["Start Time"] || "";
+  setValue(
+    "startTime",
+    item["Start Time"] || ""
+  );
 
-  document.getElementById("deadlineDate").value =
-    item["Deadline Date"] || "";
+  setValue(
+    "deadlineDate",
+    item["Deadline Date"] || ""
+  );
 
-  document.getElementById("deadlineTime").value =
-    item["Deadline Time"] || "";
+  setValue(
+    "deadlineTime",
+    item["Deadline Time"] || ""
+  );
 
-  document.getElementById("status").value =
-    item.Status || "OPEN";
-
-  document.getElementById("featured").checked =
-    String(item.Featured).toUpperCase() === "YES";
-
-  document.getElementById("published").checked =
-    String(item.Published).toUpperCase() !== "NO";
-
-  document.getElementById(
-    "opportunityFormTitle"
-  ).textContent =
-    "Edit Opportunity";
+  setValue(
+    "status",
+    item.Status || "OPEN"
+  );
 
   document
-    .getElementById("opportunityPanel")
+    .getElementById("featured")
+    .checked =
+      String(
+        item.Featured || ""
+      ).toUpperCase()
+      === "YES";
+
+  document
+    .getElementById("published")
+    .checked =
+      String(
+        item.Published || ""
+      ).toUpperCase()
+      !== "NO";
+
+  document
+    .getElementById(
+      "opportunityFormTitle"
+    )
+    .textContent =
+      "Edit Opportunity";
+
+  document
+    .getElementById(
+      "opportunityPanel"
+    )
     .scrollIntoView({
       behavior:"smooth"
     });
+
 }
 
 
-/* =========================
-   CLEAR
-========================= */
+/* =========================================================
+   CLEAR OPPORTUNITY
+========================================================= */
 
 function clearOpportunityForm(){
 
   [
+
     "editId",
     "title",
     "organization",
@@ -1494,28 +2409,48 @@ function clearOpportunityForm(){
     "startTime",
     "deadlineDate",
     "deadlineTime"
+
   ].forEach(id=>{
-    document.getElementById(id).value="";
+
+    const element =
+      document.getElementById(id);
+
+    if(element){
+      element.value="";
+    }
+
   });
 
-  document.getElementById("status").value="OPEN";
+  setValue(
+    "status",
+    "OPEN"
+  );
 
-  document.getElementById("featured").checked=false;
+  document
+    .getElementById("featured")
+    .checked=false;
 
-  document.getElementById("published").checked=true;
+  document
+    .getElementById("published")
+    .checked=true;
 
-  document.getElementById(
-    "opportunityFormTitle"
-  ).textContent =
-    "Add New Opportunity";
+  document
+    .getElementById(
+      "opportunityFormTitle"
+    )
+    .textContent =
+      "Add New Opportunity";
+
 }
 
 
-/* =========================
-   DELETE
-========================= */
+/* =========================================================
+   DELETE OPPORTUNITY
+========================================================= */
 
 async function deleteOpportunity(id){
+
+  if(!id) return;
 
   if(!confirm(
     "Are you sure you want to delete this opportunity?"
@@ -1527,8 +2462,11 @@ async function deleteOpportunity(id){
 
     const result =
       await apiPost({
+
         action:"deleteOpportunity",
+
         id:id
+
       });
 
     if(result.success){
@@ -1539,6 +2477,7 @@ async function deleteOpportunity(id){
       );
 
       await loadOpportunities();
+
       await loadStats();
 
     }else{
@@ -1554,42 +2493,602 @@ async function deleteOpportunity(id){
 
     console.error(error);
 
-    alert("Connection error.");
+    alert(
+      "Connection error."
+    );
+
   }
+
 }
 
 
-/* =========================
-   SOURCES
-========================= */
+/* =========================================================
+   ARTICLES LOAD
+========================================================= */
 
-async function addSource(){
+async function loadArticles(){
 
-  const name =
+  try{
+
+    let result =
+      await apiGet({
+        action:"getArticles"
+      });
+
+    if(!result.success){
+
+      result =
+        await apiGet({
+          action:"articles",
+          status:"ALL"
+        });
+
+    }
+
+    articles =
+      result.articles || [];
+
+    renderArticleTable();
+
+  }catch(error){
+
+    console.error(
+      "Articles load error:",
+      error
+    );
+
+    articles=[];
+
+    renderArticleTable();
+
+  }
+
+}
+
+
+/* =========================================================
+   ARTICLE TABLE
+========================================================= */
+
+function renderArticleTable(){
+
+  const tbody =
     document.getElementById(
-      "sourceName"
-    ).value.trim();
+      "articleTable"
+    );
 
-  const url =
+  const search =
+    getValue(
+      "articleSearch"
+    )
+    .toLowerCase();
+
+  const category =
+    getValue(
+      "articleFilterCategory"
+    );
+
+  const status =
+    getValue(
+      "articleFilterStatus"
+    );
+
+  const filtered =
+    articles.filter(item=>{
+
+      const text =
+        [
+
+          item.Title,
+
+          item.Summary,
+
+          item.Content,
+
+          item["Source Name"],
+
+          item.Source,
+
+          item.Category
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      if(
+        search &&
+        !text.includes(search)
+      ){
+        return false;
+      }
+
+      if(
+        category &&
+        String(
+          item.Category || ""
+        ) !== category
+      ){
+        return false;
+      }
+
+      if(
+        status &&
+        String(
+          item.Status || ""
+        ).toUpperCase() !==
+        status.toUpperCase()
+      ){
+        return false;
+      }
+
+      return true;
+
+    });
+
+  if(!filtered.length){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="8" class="empty">
+          No articles found.
+        </td>
+      </tr>`;
+
+    return;
+
+  }
+
+  tbody.innerHTML =
+    filtered.map(item=>{
+
+      const id =
+        item.ID ||
+        item.Id ||
+        item.id ||
+        "";
+
+      const articleStatus =
+        String(
+          item.Status ||
+          "DRAFT"
+        ).toUpperCase();
+
+      let statusClass =
+        "pill-draft";
+
+      if(
+        articleStatus === "PUBLISHED"
+      ){
+        statusClass="pill-published";
+      }
+
+      if(
+        articleStatus === "UNPUBLISHED"
+      ){
+        statusClass="pill-unpublished";
+      }
+
+      if(
+        articleStatus === "PENDING"
+      ){
+        statusClass="pill-pending";
+      }
+
+      const source =
+        item["Source Name"] ||
+        item.Source ||
+        item.SourceName ||
+        "";
+
+      return `
+
+      <tr>
+
+        <td>
+          ${escapeHTML(id)}
+        </td>
+
+        <td>
+
+          <strong>
+            ${escapeHTML(
+              item.Title || ""
+            )}
+          </strong>
+
+          ${
+            item["Original URL"] ||
+            item["Source URL"] ||
+            item.OriginalURL
+              ? `
+              <br>
+              <a
+                href="${escapeAttribute(
+                  item["Original URL"] ||
+                  item["Source URL"] ||
+                  item.OriginalURL
+                )}"
+                target="_blank"
+                rel="noopener">
+                Original
+              </a>
+              `
+              : ""
+          }
+
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item.Category || ""
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(source)}
+        </td>
+
+        <td>
+          <span class="pill ${statusClass}">
+            ${escapeHTML(articleStatus)}
+          </span>
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item.Featured || "NO"
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item["Created At"] ||
+            item.CreatedAt ||
+            ""
+          )}
+        </td>
+
+        <td>
+
+          <div class="action-buttons">
+
+            <button
+              class="btn blue small"
+              onclick='editArticle(${safeJSON(item)})'>
+              Edit
+            </button>
+
+            ${
+              articleStatus !== "PUBLISHED"
+              ? `
+              <button
+                class="btn small"
+                onclick="publishArticle('${escapeJS(id)}')">
+                Publish
+              </button>
+              `
+              : `
+              <button
+                class="btn orange small"
+                onclick="unpublishArticle('${escapeJS(id)}')">
+                Unpublish
+              </button>
+              `
+            }
+
+            <button
+              class="btn red small"
+              onclick="deleteArticle('${escapeJS(id)}')">
+              Delete
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   SAVE ARTICLE
+========================================================= */
+
+async function saveArticle(){
+
+  const id =
+    getValue("articleId");
+
+  const title =
+    getValue("articleTitle");
+
+  const category =
+    getValue("articleCategory");
+
+  const status =
+    getValue("articleStatus") ||
+    "DRAFT";
+
+  const box =
     document.getElementById(
-      "sourceUrlAdmin"
-    ).value.trim();
+      "articleMessage"
+    );
 
-  const description =
-    document.getElementById(
-      "sourceDescription"
-    ).value.trim();
-
-  if(!name || !url){
+  if(!title || !category){
 
     showMessage(
-      document.getElementById(
-        "sourceMessage"
-      ),
-      "Source name and URL are required.",
+      box,
+      "Article title and category are required.",
       false
     );
 
+    return;
+
+  }
+
+  const data={
+
+    action:
+      id
+        ? "updateArticle"
+        : "addArticle",
+
+    id:id,
+
+    title:title,
+
+    category:category,
+
+    summary:
+      getValue("articleSummary"),
+
+    content:
+      getValue("articleContent"),
+
+    imageUrl:
+      getValue("articleImage"),
+
+    author:
+      getValue("articleAuthor"),
+
+    sourceName:
+      getValue("articleSourceName"),
+
+    sourceUrl:
+      getValue("articleSourceUrl"),
+
+    originalUrl:
+      getValue("articleOriginalUrl"),
+
+    status:status,
+
+    featured:
+      document
+        .getElementById(
+          "articleFeatured"
+        )
+        .checked
+        ? "YES"
+        : "NO"
+
+  };
+
+  try{
+
+    const result =
+      await apiPost(data);
+
+    if(result.success){
+
+      showMessage(
+        box,
+        result.message ||
+        "Article saved successfully.",
+        true
+      );
+
+      clearArticleForm();
+
+      await loadArticles();
+
+      await loadStats();
+
+    }else{
+
+      showMessage(
+        box,
+        result.message ||
+        "Unable to save article.",
+        false
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      box,
+      "Connection error.",
+      false
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   EDIT ARTICLE
+========================================================= */
+
+function editArticle(item){
+
+  setValue(
+    "articleId",
+    item.ID ||
+    item.Id ||
+    item.id ||
+    ""
+  );
+
+  setValue(
+    "articleTitle",
+    item.Title || ""
+  );
+
+  setValue(
+    "articleCategory",
+    item.Category || ""
+  );
+
+  setValue(
+    "articleStatus",
+    item.Status || "DRAFT"
+  );
+
+  setValue(
+    "articleSourceName",
+    item["Source Name"] ||
+    item.Source ||
+    ""
+  );
+
+  setValue(
+    "articleSourceUrl",
+    item["Source URL"] ||
+    item.SourceURL ||
+    ""
+  );
+
+  setValue(
+    "articleOriginalUrl",
+    item["Original URL"] ||
+    item.OriginalURL ||
+    ""
+  );
+
+  setValue(
+    "articleAuthor",
+    item.Author || ""
+  );
+
+  setValue(
+    "articleImage",
+    item["Image URL"] ||
+    item.ImageURL ||
+    ""
+  );
+
+  setValue(
+    "articleSummary",
+    item.Summary || ""
+  );
+
+  setValue(
+    "articleContent",
+    item.Content || ""
+  );
+
+  document
+    .getElementById(
+      "articleFeatured"
+    )
+    .checked =
+      String(
+        item.Featured || ""
+      ).toUpperCase()
+      === "YES";
+
+  document
+    .getElementById(
+      "articleFormTitle"
+    )
+    .textContent =
+      "Edit Article";
+
+  updateSummaryCount();
+
+  document
+    .getElementById(
+      "articlePanel"
+    )
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   CLEAR ARTICLE
+========================================================= */
+
+function clearArticleForm(){
+
+  [
+
+    "articleId",
+    "articleTitle",
+    "articleSourceName",
+    "articleSourceUrl",
+    "articleOriginalUrl",
+    "articleAuthor",
+    "articleImage",
+    "articleSummary",
+    "articleContent"
+
+  ].forEach(id=>{
+
+    setValue(id,"");
+
+  });
+
+  setValue(
+    "articleStatus",
+    "DRAFT"
+  );
+
+  setValue(
+    "articleCategory",
+    ""
+  );
+
+  document
+    .getElementById(
+      "articleFeatured"
+    )
+    .checked=false;
+
+  document
+    .getElementById(
+      "articleFormTitle"
+    )
+    .textContent =
+      "Add New Article";
+
+  updateSummaryCount();
+
+}
+
+
+/* =========================================================
+   PUBLISH ARTICLE
+========================================================= */
+
+async function publishArticle(id){
+
+  if(!id) return;
+
+  if(!confirm(
+    "Publish this article to the public website?"
+  )){
     return;
   }
 
@@ -1597,44 +3096,243 @@ async function addSource(){
 
     const result =
       await apiPost({
+
+        action:"publishArticle",
+
+        id:id
+
+      });
+
+    alert(
+      result.message ||
+      (
+        result.success
+          ? "Article published."
+          : "Publishing failed."
+      )
+    );
+
+    if(result.success){
+
+      await loadArticles();
+
+      await loadStats();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Connection error."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   UNPUBLISH ARTICLE
+========================================================= */
+
+async function unpublishArticle(id){
+
+  if(!id) return;
+
+  if(!confirm(
+    "Unpublish this article?"
+  )){
+    return;
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+
+        action:"unpublishArticle",
+
+        id:id
+
+      });
+
+    alert(
+      result.message ||
+      (
+        result.success
+          ? "Article unpublished."
+          : "Unpublish failed."
+      )
+    );
+
+    if(result.success){
+
+      await loadArticles();
+
+      await loadStats();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Connection error."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   DELETE ARTICLE
+========================================================= */
+
+async function deleteArticle(id){
+
+  if(!id) return;
+
+  if(!confirm(
+    "Are you sure you want to delete this article?"
+  )){
+    return;
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+
+        action:"deleteArticle",
+
+        id:id
+
+      });
+
+    alert(
+      result.message ||
+      (
+        result.success
+          ? "Article deleted."
+          : "Delete failed."
+      )
+    );
+
+    if(result.success){
+
+      await loadArticles();
+
+      await loadStats();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Connection error."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SOURCE ADD
+========================================================= */
+
+async function addSource(){
+
+  const name =
+    getValue("sourceName");
+
+  const url =
+    getValue("sourceUrlAdmin");
+
+  const category =
+    getValue("sourceCategory");
+
+  const active =
+    getValue("sourceActive") ||
+    "YES";
+
+  const description =
+    getValue("sourceDescription");
+
+  const box =
+    document.getElementById(
+      "sourceMessage"
+    );
+
+  if(!name || !url){
+
+    showMessage(
+      box,
+      "Source name and URL are required.",
+      false
+    );
+
+    return;
+
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+
         action:"addSource",
+
         name:name,
+
         url:url,
+
+        category:category,
+
+        active:active,
+
         description:description
+
       });
 
     if(result.success){
 
       showMessage(
-        document.getElementById(
-          "sourceMessage"
-        ),
+        box,
         result.message ||
-        "Source added.",
+        "Source added successfully.",
         true
       );
 
-      document.getElementById(
-        "sourceName"
-      ).value="";
+      setValue(
+        "sourceName",
+        ""
+      );
 
-      document.getElementById(
-        "sourceUrlAdmin"
-      ).value="";
+      setValue(
+        "sourceUrlAdmin",
+        ""
+      );
 
-      document.getElementById(
-        "sourceDescription"
-      ).value="";
+      setValue(
+        "sourceDescription",
+        ""
+      );
 
       await loadSources();
+
       await loadStats();
 
     }else{
 
       showMessage(
-        document.getElementById(
-          "sourceMessage"
-        ),
+        box,
         result.message ||
         "Unable to add source.",
         false
@@ -1646,9 +3344,20 @@ async function addSource(){
 
     console.error(error);
 
+    showMessage(
+      box,
+      "Connection error.",
+      false
+    );
+
   }
+
 }
 
+
+/* =========================================================
+   LOAD SOURCES
+========================================================= */
 
 async function loadSources(){
 
@@ -1668,9 +3377,18 @@ async function loadSources(){
 
     console.error(error);
 
+    sources=[];
+
+    renderSources();
+
   }
+
 }
 
+
+/* =========================================================
+   RENDER SOURCES
+========================================================= */
 
 function renderSources(){
 
@@ -1683,12 +3401,13 @@ function renderSources(){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="5">
+        <td colspan="7" class="empty">
           No sources found.
         </td>
       </tr>`;
 
     return;
+
   }
 
   tbody.innerHTML =
@@ -1700,30 +3419,65 @@ function renderSources(){
         source.id ||
         "";
 
+      const name =
+        source.Name ||
+        source["Source Name"] ||
+        "";
+
+      const url =
+        source.URL ||
+        source.Url ||
+        source["Source URL"] ||
+        "";
+
+      const category =
+        source.Category ||
+        "";
+
+      const active =
+        String(
+          source.Active ||
+          source.Status ||
+          "YES"
+        ).toUpperCase();
+
       return `
+
       <tr>
 
-        <td>${escapeHTML(id)}</td>
-
         <td>
-          ${escapeHTML(
-            source.Name ||
-            source["Source Name"] ||
-            ""
-          )}
+          ${escapeHTML(id)}
         </td>
 
         <td>
+          <strong>
+            ${escapeHTML(name)}
+          </strong>
+        </td>
+
+        <td>
+
           <a
-            href="${escapeAttribute(
-              source.URL ||
-              source.Url ||
-              source["Source URL"] ||
-              ""
-            )}"
-            target="_blank">
-            Open
+            href="${escapeAttribute(url)}"
+            target="_blank"
+            rel="noopener">
+            Open Source
           </a>
+
+        </td>
+
+        <td>
+          ${escapeHTML(category)}
+        </td>
+
+        <td>
+          <span class="pill ${
+            active === "YES"
+              ? "pill-published"
+              : "pill-unpublished"
+          }">
+            ${escapeHTML(active)}
+          </span>
         </td>
 
         <td>
@@ -1734,22 +3488,34 @@ function renderSources(){
 
         <td>
 
-          <button
-            class="btn red"
-            onclick="deleteSource('${escapeJS(id)}')">
-            Delete
-          </button>
+          <div class="action-buttons">
+
+            <button
+              class="btn red small"
+              onclick="deleteSource('${escapeJS(id)}')">
+              Delete
+            </button>
+
+          </div>
 
         </td>
 
       </tr>
+
       `;
 
     }).join("");
+
 }
 
 
+/* =========================================================
+   DELETE SOURCE
+========================================================= */
+
 async function deleteSource(id){
+
+  if(!id) return;
 
   if(!confirm(
     "Delete this source?"
@@ -1761,28 +3527,94 @@ async function deleteSource(id){
 
     const result =
       await apiPost({
+
         action:"deleteSource",
+
         id:id
+
       });
 
     alert(
       result.message ||
-      "Done."
+      "Operation completed."
     );
 
-    await loadSources();
+    if(result.success){
+
+      await loadSources();
+
+      await loadStats();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Connection error."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SCAN SOURCES
+========================================================= */
+
+async function scanSources(){
+
+  const box =
+    document.getElementById(
+      "sourceMessage"
+    );
+
+  showMessage(
+    box,
+    "Scanning active sources...",
+    true
+  );
+
+  try{
+
+    const result =
+      await apiPost({
+
+        action:"scanSources"
+
+      });
+
+    showMessage(
+      box,
+      result.message ||
+      "Source scan completed.",
+      result.success
+    );
+
+    await loadArticles();
+
     await loadStats();
 
   }catch(error){
 
-    alert("Connection error.");
+    console.error(error);
+
+    showMessage(
+      box,
+      "Source scan failed.",
+      false
+    );
+
   }
+
 }
 
 
-/* =========================
-   SUBSCRIBERS
-========================= */
+/* =========================================================
+   LOAD SUBSCRIBERS
+========================================================= */
 
 async function loadSubscribers(){
 
@@ -1802,9 +3634,18 @@ async function loadSubscribers(){
 
     console.error(error);
 
+    subscribers=[];
+
+    renderSubscribers();
+
   }
+
 }
 
+
+/* =========================================================
+   RENDER SUBSCRIBERS
+========================================================= */
 
 function renderSubscribers(){
 
@@ -1813,22 +3654,73 @@ function renderSubscribers(){
       "subscriberTable"
     );
 
-  if(!subscribers.length){
+  const search =
+    getValue(
+      "subscriberSearch"
+    )
+    .toLowerCase();
+
+  const statusFilter =
+    getValue(
+      "subscriberStatusFilter"
+    )
+    .toUpperCase();
+
+  const filtered =
+    subscribers.filter(item=>{
+
+      const text =
+        [
+
+          item.Email,
+
+          item.Name
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      const status =
+        String(
+          item.Status ||
+          "ACTIVE"
+        ).toUpperCase();
+
+      if(
+        search &&
+        !text.includes(search)
+      ){
+        return false;
+      }
+
+      if(
+        statusFilter &&
+        status !== statusFilter
+      ){
+        return false;
+      }
+
+      return true;
+
+    });
+
+  if(!filtered.length){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="5">
+        <td colspan="5" class="empty">
           No subscribers found.
         </td>
       </tr>`;
 
     return;
+
   }
 
   tbody.innerHTML =
-    subscribers.map(item=>{
+    filtered.map(item=>{
 
-      let cats=[];
+      const cats=[];
 
       categories.forEach(category=>{
 
@@ -1841,12 +3733,15 @@ function renderSubscribers(){
           ).toUpperCase()
           === "YES"
         ){
+
           cats.push(category);
+
         }
 
       });
 
       return `
+
       <tr>
 
         <td>
@@ -1869,107 +3764,351 @@ function renderSubscribers(){
 
         <td>
           ${escapeHTML(
-            item.Status || "ACTIVE"
+            item.Status ||
+            "ACTIVE"
           )}
         </td>
 
         <td>
           ${escapeHTML(
-            item["Subscribed At"] || ""
+            item["Subscribed At"] ||
+            item.SubscribedAt ||
+            ""
           )}
         </td>
 
       </tr>
+
       `;
 
     }).join("");
+
 }
 
 
-/* =========================
-   STATS
-========================= */
+/* =========================================================
+   LOAD NOTIFICATIONS
+========================================================= */
 
-async function loadStats(){
+async function loadNotifications(){
+
+  try{
+
+    let result =
+      await apiGet({
+        action:"getNotifications"
+      });
+
+    if(
+      !result.success &&
+      !Array.isArray(
+        result.notifications
+      )
+    ){
+
+      result =
+        await apiGet({
+          action:"notifications"
+        });
+
+    }
+
+    notifications =
+      result.notifications || [];
+
+    renderNotificationTable();
+
+  }catch(error){
+
+    console.error(
+      "Notification history error:",
+      error
+    );
+
+    notifications=[];
+
+    renderNotificationTable();
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER NOTIFICATION HISTORY
+========================================================= */
+
+function renderNotificationTable(){
+
+  const tbody =
+    document.getElementById(
+      "notificationTable"
+    );
+
+  const search =
+    getValue(
+      "notificationSearch"
+    )
+    .toLowerCase();
+
+  const statusFilter =
+    getValue(
+      "notificationFilterStatus"
+    ).toUpperCase();
+
+  const filtered =
+    notifications.filter(item=>{
+
+      const text =
+        [
+
+          item.Subject,
+
+          item.Message,
+
+          item.Category,
+
+          item.Recipients,
+
+          item["Recipient Type"]
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      const status =
+        String(
+          item.Status ||
+          "SENT"
+        ).toUpperCase();
+
+      if(
+        search &&
+        !text.includes(search)
+      ){
+        return false;
+      }
+
+      if(
+        statusFilter &&
+        status !== statusFilter
+      ){
+        return false;
+      }
+
+      return true;
+
+    });
+
+  if(!filtered.length){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="9" class="empty">
+          No notification history found.
+        </td>
+      </tr>`;
+
+    return;
+
+  }
+
+  tbody.innerHTML =
+    filtered.map(item=>{
+
+      const id =
+        item.ID ||
+        item.Id ||
+        item.id ||
+        "";
+
+      const status =
+        String(
+          item.Status ||
+          "SENT"
+        ).toUpperCase();
+
+      const statusClass =
+        status === "FAILED"
+          ? "pill-failed"
+          : "pill-sent";
+
+      const message =
+        String(
+          item.Message || ""
+        );
+
+      return `
+
+      <tr>
+
+        <td>
+          ${escapeHTML(id)}
+        </td>
+
+        <td>
+          <strong>
+            ${escapeHTML(
+              item.Subject || ""
+            )}
+          </strong>
+        </td>
+
+        <td style="max-width:300px">
+
+          ${escapeHTML(
+            message.length > 180
+              ? message.substring(0,180)+"..."
+              : message
+          )}
+
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item.Category || ""
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item.Recipients ||
+            item["Recipient Type"] ||
+            ""
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item["Sent At"] ||
+            item.SentAt ||
+            item.Timestamp ||
+            ""
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item["Sent By"] ||
+            item.SentBy ||
+            ADMIN_EMAIL
+          )}
+        </td>
+
+        <td>
+          <span class="pill ${statusClass}">
+            ${escapeHTML(status)}
+          </span>
+        </td>
+
+        <td>
+
+          <button
+            class="btn red small"
+            onclick="deleteNotification('${escapeJS(id)}')">
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   DELETE NOTIFICATION HISTORY
+========================================================= */
+
+async function deleteNotification(id){
+
+  if(!id) return;
+
+  if(!confirm(
+    "Delete this notification history record?"
+  )){
+    return;
+  }
 
   try{
 
     const result =
-      await apiGet({
-        action:"stats"
+      await apiPost({
+
+        action:"deleteNotification",
+
+        id:id
+
       });
 
-    if(!result.success) return;
+    alert(
+      result.message ||
+      (
+        result.success
+          ? "Notification history deleted."
+          : "Delete failed."
+      )
+    );
 
-    const stats =
-      result.stats || result;
+    if(result.success){
 
-    document.getElementById(
-      "statOpportunities"
-    ).textContent =
-      stats.opportunities ||
-      stats.totalOpportunities ||
-      opportunities.length ||
-      0;
+      await loadNotifications();
 
-    document.getElementById(
-      "statOpen"
-    ).textContent =
-      stats.open || 0;
+      await loadStats();
 
-    document.getElementById(
-      "statClosing"
-    ).textContent =
-      stats.closingSoon || 0;
-
-    document.getElementById(
-      "statClosed"
-    ).textContent =
-      stats.closed || 0;
-
-    document.getElementById(
-      "statSubscribers"
-    ).textContent =
-      stats.subscribers || subscribers.length || 0;
-
-    document.getElementById(
-      "statSources"
-    ).textContent =
-      stats.sources || sources.length || 0;
+    }
 
   }catch(error){
 
     console.error(error);
 
+    alert(
+      "Connection error."
+    );
+
   }
+
 }
 
 
-/* =========================
-   NOTIFICATIONS
-========================= */
+/* =========================================================
+   SEND NOTIFICATION
+========================================================= */
 
 async function sendNotification(){
 
   const category =
-    document.getElementById(
+    getValue(
       "notificationCategory"
-    ).value;
+    );
 
   const recipientType =
-    document.getElementById(
+    getValue(
       "recipientType"
-    ).value;
+    );
 
   const subject =
-    document.getElementById(
+    getValue(
       "notificationSubject"
-    ).value.trim();
+    );
+
+  /*
+   IMPORTANT:
+   We do not modify the message.
+   The exact text entered by the admin
+   is sent to the backend.
+  */
 
   const message =
-    document.getElementById(
-      "notificationMessage"
-    ).value.trim();
+    document
+      .getElementById(
+        "notificationMessage"
+      )
+      .value;
 
   const box =
     document.getElementById(
@@ -1980,8 +4119,8 @@ async function sendNotification(){
     !subject ||
     !message ||
     (
-      recipientType === "CATEGORY"
-      && !category
+      recipientType === "CATEGORY" &&
+      !category
     )
   ){
 
@@ -1992,10 +4131,11 @@ async function sendNotification(){
     );
 
     return;
+
   }
 
   if(!confirm(
-    "Send this notification to subscribers?"
+    "Send this notification now?"
   )){
     return;
   }
@@ -2026,6 +4166,14 @@ async function sendNotification(){
         true
       );
 
+      /*
+       * Refresh history after sending.
+       */
+
+      await loadNotifications();
+
+      await loadStats();
+
     }else{
 
       showMessage(
@@ -2034,6 +4182,8 @@ async function sendNotification(){
         "Notification failed.",
         false
       );
+
+      await loadNotifications();
 
     }
 
@@ -2046,9 +4196,15 @@ async function sendNotification(){
       "Connection error.",
       false
     );
+
   }
+
 }
 
+
+/* =========================================================
+   TEST EMAIL
+========================================================= */
 
 async function sendTestEmail(){
 
@@ -2056,7 +4212,9 @@ async function sendTestEmail(){
 
     const result =
       await apiPost({
+
         action:"sendTestEmail"
+
       });
 
     showMessage(
@@ -2079,13 +4237,15 @@ async function sendTestEmail(){
       "Unable to send test email.",
       false
     );
+
   }
+
 }
 
 
-/* =========================
+/* =========================================================
    SYSTEM CHECK
-========================= */
+========================================================= */
 
 async function checkSystem(){
 
@@ -2107,6 +4267,8 @@ async function checkSystem(){
 
   }catch(error){
 
+    console.error(error);
+
     showMessage(
       document.getElementById(
         "systemMessage"
@@ -2114,13 +4276,212 @@ async function checkSystem(){
       "System connection failed.",
       false
     );
+
   }
+
 }
 
 
-/* =========================
-   UI
-========================= */
+/* =========================================================
+   STATS
+========================================================= */
+
+async function loadStats(){
+
+  try{
+
+    const result =
+      await apiGet({
+        action:"stats"
+      });
+
+    if(!result.success){
+      return;
+    }
+
+    const stats =
+      result.stats || result;
+
+    setText(
+      "statOpportunities",
+      stats.opportunities ??
+      stats.totalOpportunities ??
+      opportunities.length ??
+      0
+    );
+
+    setText(
+      "statOpen",
+      stats.open ?? 0
+    );
+
+    setText(
+      "statClosing",
+      stats.closingSoon ?? 0
+    );
+
+    setText(
+      "statClosed",
+      stats.closed ?? 0
+    );
+
+    setText(
+      "statArticles",
+      stats.articles ??
+      stats.totalArticles ??
+      articles.length ??
+      0
+    );
+
+    setText(
+      "statDrafts",
+      stats.drafts ??
+      stats.draftArticles ??
+      articles.filter(
+        x =>
+          String(
+            x.Status || ""
+          ).toUpperCase()
+          === "DRAFT"
+      ).length
+    );
+
+    setText(
+      "statSubscribers",
+      stats.subscribers ??
+      subscribers.length ??
+      0
+    );
+
+    setText(
+      "statSources",
+      stats.sources ??
+      sources.length ??
+      0
+    );
+
+    setText(
+      "statNotifications",
+      stats.notifications ??
+      stats.totalNotifications ??
+      notifications.length ??
+      0
+    );
+
+  }catch(error){
+
+    console.error(
+      "Stats error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CLEAR NOTIFICATION
+========================================================= */
+
+function clearNotificationForm(){
+
+  setValue(
+    "notificationCategory",
+    ""
+  );
+
+  setValue(
+    "notificationSubject",
+    ""
+  );
+
+  document
+    .getElementById(
+      "notificationMessage"
+    )
+    .value="";
+
+  updatePreview();
+
+}
+
+
+/* =========================================================
+   NOTIFICATION PREVIEW
+========================================================= */
+
+function updatePreview(){
+
+  const subject =
+    getValue(
+      "notificationSubject"
+    );
+
+  /*
+   Preview preserves the message.
+   It only converts line breaks to HTML
+   for display.
+  */
+
+  const message =
+    document
+      .getElementById(
+        "notificationMessage"
+      )
+      .value;
+
+  const preview =
+    document.getElementById(
+      "notificationPreview"
+    );
+
+  preview.innerHTML = `
+
+    <div class="notification-preview-title">
+      ${escapeHTML(
+        subject ||
+        "Notification Preview"
+      )}
+    </div>
+
+    <div>
+      ${
+        escapeHTML(
+          message ||
+          "Your notification preview will appear here."
+        )
+        .replace(/\n/g,"<br>")
+      }
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SUMMARY COUNTER
+========================================================= */
+
+function updateSummaryCount(){
+
+  const text =
+    getValue(
+      "articleSummary"
+    );
+
+  setText(
+    "summaryCount",
+    text.length
+  );
+
+}
+
+
+/* =========================================================
+   SHOW SECTION
+========================================================= */
 
 function showSection(id){
 
@@ -2130,120 +4491,257 @@ function showSection(id){
   if(element){
 
     element.scrollIntoView({
-      behavior:"smooth"
+      behavior:"smooth",
+      block:"start"
     });
 
   }
+
 }
 
 
-function showMessage(element,text,success){
+/* =========================================================
+   MESSAGE
+========================================================= */
 
-  element.textContent=text;
+function showMessage(
+  element,
+  text,
+  success
+){
 
-  element.style.display="block";
+  if(!element) return;
+
+  element.textContent =
+    text || "";
+
+  element.style.display =
+    "block";
 
   element.className =
     "notice " +
-    (success ? "success" : "error");
+    (
+      success
+        ? "success"
+        : "error"
+    );
+
 }
 
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function getValue(id){
+
+  const element =
+    document.getElementById(id);
+
+  return element
+    ? String(
+        element.value ??
+        ""
+      ).trim()
+    : "";
+
+}
+
+
+function setValue(
+  id,
+  value
+){
+
+  const element =
+    document.getElementById(id);
+
+  if(element){
+
+    element.value =
+      value ?? "";
+
+  }
+
+}
+
+
+function setText(
+  id,
+  value
+){
+
+  const element =
+    document.getElementById(id);
+
+  if(element){
+
+    element.textContent =
+      value ?? "";
+
+  }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
 function escapeHTML(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
 }
 
+
+/* =========================================================
+   ESCAPE JS
+========================================================= */
 
 function escapeJS(value){
 
-  return String(value ?? "")
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
+  return String(
+    value ?? ""
+  )
+  .replace(/\\/g,"\\\\")
+  .replace(/'/g,"\\'");
+
 }
 
+
+/* =========================================================
+   SAFE JSON
+========================================================= */
+
+function safeJSON(value){
+
+  return JSON.stringify(
+    value
+  )
+  .replace(/</g,"\\u003c")
+  .replace(/>/g,"\\u003e")
+  .replace(/&/g,"\\u0026")
+  .replace(/'/g,"\\u0027");
+
+}
+
+
+/* =========================================================
+   ESCAPE ATTRIBUTE
+========================================================= */
 
 function escapeAttribute(value){
 
   const v =
-    String(value || "");
+    String(
+      value || ""
+    ).trim();
 
-  if(!/^https?:\/\//i.test(v)){
+  if(
+    !/^https?:\/\//i.test(v)
+  ){
+
     return "#";
+
   }
 
   return v
     .replace(/"/g,"%22")
-    .replace(/'/g,"%27");
+    .replace(/'/g,"%27")
+    .replace(/</g,"%3C")
+    .replace(/>/g,"%3E");
+
 }
 
+
+/* =========================================================
+   NORMALIZE KEY
+========================================================= */
 
 function normalizeKey(value){
 
-  return String(value || "")
-    .toLowerCase()
-    .trim()
-    .replace(/&/g,"and")
-    .replace(/[^a-z0-9]+/g,"_")
-    .replace(/^_+|_+$/g,"");
+  return String(
+    value || ""
+  )
+  .toLowerCase()
+  .trim()
+  .replace(/&/g,"and")
+  .replace(/[^a-z0-9]+/g,"_")
+  .replace(
+    /^_+|_+$/g,
+    ""
+  );
+
 }
 
 
-/* =========================
-   PREVIEW
-========================= */
+/* =========================================================
+   EVENT LISTENERS
+========================================================= */
 
 document
-  .getElementById("notificationMessage")
-  .addEventListener("input",updatePreview);
+  .getElementById(
+    "notificationMessage"
+  )
+  .addEventListener(
+    "input",
+    updatePreview
+  );
 
 document
-  .getElementById("notificationSubject")
-  .addEventListener("input",updatePreview);
+  .getElementById(
+    "notificationSubject"
+  )
+  .addEventListener(
+    "input",
+    updatePreview
+  );
+
+document
+  .getElementById(
+    "articleSummary"
+  )
+  .addEventListener(
+    "input",
+    updateSummaryCount
+  );
 
 
-function updatePreview(){
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
 
-  const subject =
-    document.getElementById(
-      "notificationSubject"
-    ).value;
+document
+  .getElementById(
+    "password"
+  )
+  .addEventListener(
+    "keydown",
+    function(event){
 
-  const message =
-    document.getElementById(
-      "notificationMessage"
-    ).value;
+      if(
+        event.key === "Enter"
+      ){
 
-  document.getElementById(
-    "notificationPreview"
-  ).innerHTML = `
+        login();
 
-    <strong>
-      ${escapeHTML(
-        subject ||
-        "Notification subject"
-      )}
-    </strong>
+      }
 
-    <br><br>
-
-    ${escapeHTML(
-      message ||
-      "Your notification preview will appear here."
-    ).replace(/\n/g,"<br>")}
-
-  `;
-}
+    }
+  );
 
 
-/* =========================
-   AUTO LOGIN STATE
-========================= */
+/* =========================================================
+   AUTO LOGIN
+========================================================= */
 
 if(
   sessionStorage.getItem(
@@ -2251,17 +4749,12 @@ if(
   ) === "YES"
 ){
 
-  document
-    .getElementById("loginPage")
-    .style.display="none";
-
-  document
-    .getElementById("adminPage")
-    .style.display="block";
-
   loggedIn=true;
 
+  showAdmin();
+
   loadAll();
+
 }
 
 </script>
