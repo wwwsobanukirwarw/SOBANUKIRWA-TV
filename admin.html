@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SOBANUKIRWA TV | Admin</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f6fa;
+  color:#182234;
+}
+
+header{
+  background:linear-gradient(135deg,#003b1f,#006400,#009c45);
+  color:white;
+  padding:18px 25px;
+  box-shadow:0 3px 12px #0003;
+}
+
+.header-inner{
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+}
+
+.logo span{
+  display:block;
+  font-size:11px;
+  color:#ffe600;
+  letter-spacing:2px;
+}
+
+.header-buttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.header-buttons button{
+  background:#ffffff18;
+  color:white;
+  border:1px solid #ffffff44;
+}
+
+.header-buttons button:hover{
+  background:#ffffff30;
+}
+
+.login-page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at top left,#008f3955,transparent 35%),
+    radial-gradient(circle at bottom right,#00640055,transparent 35%),
+    #eef3f7;
+}
+
+.login-box{
+  width:min(420px,92%);
+  background:white;
+  padding:35px;
+  border-radius:18px;
+  box-shadow:0 12px 40px #0002;
+}
+
+.login-box h1{
+  color:#006400;
+  text-align:center;
+  margin-top:0;
+}
+
+.login-box p{
+  text-align:center;
+  color:#666;
+}
+
+.input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccd3dd;
+  border-radius:8px;
+  margin:7px 0 15px;
+  font-size:16px;
+}
+
+.btn{
+  border:0;
+  padding:12px 17px;
+  border-radius:8px;
+  background:#006400;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#004900;
+}
+
+.btn.red{background:#b40000}
+.btn.blue{background:#145ca8}
+.btn.gray{background:#66717e}
+.btn.yellow{
+  background:#e4ad00;
+  color:#111;
+}
+
+#loginMessage,
+.notice{
+  margin-top:12px;
+  padding:12px;
+  border-radius:7px;
+  display:none;
+}
+
+.success{
+  background:#dff7e7;
+  color:#075d28;
+}
+
+.error{
+  background:#ffe0e0;
+  color:#980000;
+}
+
+.admin{
+  display:none;
+}
+
+.main{
+  max-width:1400px;
+  margin:25px auto;
+  padding:0 18px;
+}
+
+.dashboard-title{
+  margin-bottom:20px;
+}
+
+.dashboard-title h1{
+  color:#006400;
+  margin-bottom:5px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(170px,1fr));
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.stat{
+  background:white;
+  border-radius:13px;
+  padding:20px;
+  box-shadow:0 4px 15px #0000000d;
+  border-left:5px solid #006400;
+}
+
+.stat small{
+  color:#666;
+}
+
+.stat strong{
+  display:block;
+  font-size:30px;
+  color:#006400;
+  margin-top:7px;
+}
+
+.panel{
+  background:white;
+  border-radius:14px;
+  padding:22px;
+  margin-bottom:22px;
+  box-shadow:0 4px 15px #0000000d;
+}
+
+.panel h2{
+  margin-top:0;
+  color:#006400;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-weight:bold;
+  font-size:13px;
+  display:block;
+  margin-bottom:5px;
+}
+
+textarea,
+select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccd3dd;
+  border-radius:7px;
+  min-height:44px;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.form-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.table-wrap{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;
+}
+
+th,td{
+  padding:11px;
+  border-bottom:1px solid #e5e9ee;
+  text-align:left;
+  vertical-align:top;
+  font-size:13px;
+}
+
+th{
+  background:#006400;
+  color:white;
+  position:sticky;
+  top:0;
+}
+
+tr:hover td{
+  background:#f8fbf9;
+}
+
+.pill{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:15px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.pill-open{
+  background:#d9f8e3;
+  color:#08752a;
+}
+
+.pill-upcoming{
+  background:#e1efff;
+  color:#1256a3;
+}
+
+.pill-closing{
+  background:#fff0c7;
+  color:#8a5c00;
+}
+
+.pill-closed{
+  background:#eee;
+  color:#777;
+}
+
+.action-buttons{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.action-buttons button{
+  padding:7px 9px;
+  font-size:11px;
+}
+
+.checkbox-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(190px,1fr));
+  gap:8px;
+  margin:10px 0;
+}
+
+.checkbox-item{
+  background:#f5f7f9;
+  padding:9px;
+  border-radius:7px;
+}
+
+.checkbox-item label{
+  margin:0;
+  font-weight:normal;
+}
+
+.notification-preview{
+  padding:15px;
+  background:#f5f7fa;
+  border-radius:8px;
+  line-height:1.5;
+}
+
+.hidden{display:none!important}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
+
+@media(max-width:700px){
+  .header-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<section id="loginPage" class="login-page">
+
+  <div class="login-box">
+
+    <h1>SOBANUKIRWA TV</h1>
+
+    <p>Administrator Login</p>
+
+    <input
+      id="username"
+      class="input"
+      type="text"
+      placeholder="Username">
+
+    <input
+      id="password"
+      class="input"
+      type="password"
+      placeholder="Password">
+
+    <button
+      class="btn"
+      style="width:100%"
+      onclick="login()">
+      LOGIN
+    </button>
+
+    <div id="loginMessage"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section id="adminPage" class="admin">
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="logo">
+      SOBANUKIRWA TV
+      <span>ADMIN • ONLINE • ON TIME</span>
+    </div>
+
+    <div class="header-buttons">
+      <button onclick="showSection('dashboard')">
+        Dashboard
+      </button>
+
+      <button onclick="showSection('opportunityPanel')">
+        Opportunities
+      </button>
+
+      <button onclick="showSection('sourcePanel')">
+        Sources
+      </button>
+
+      <button onclick="showSection('notificationPanel')">
+        Notifications
+      </button>
+
+      <button onclick="logout()">
+        Logout
+      </button>
+    </div>
+
+  </div>
+
+</header>
+
+
+<main class="main">
+
+  <div class="dashboard-title">
+
+    <h1>Admin Dashboard</h1>
+
+    <p>
+      Manage opportunities, subscribers, sources and notifications.
+    </p>
+
+  </div>
+
+
+  <!-- STATS -->
+
+  <div class="stats" id="dashboard">
+
+    <div class="stat">
+      <small>Total Opportunities</small>
+      <strong id="statOpportunities">0</strong>
+    </div>
+
+    <div class="stat">
+      <small>Open</small>
+      <strong id="statOpen">0</strong>
+    </div>
+
+    <div class="stat">
+      <small>Closing Soon</small>
+      <strong id="statClosing">0</strong>
+    </div>
+
+    <div class="stat">
+      <small>Closed</small>
+      <strong id="statClosed">0</strong>
+    </div>
+
+    <div class="stat">
+      <small>Subscribers</small>
+      <strong id="statSubscribers">0</strong>
+    </div>
+
+    <div class="stat">
+      <small>Sources</small>
+      <strong id="statSources">0</strong>
+    </div>
+
+  </div>
+
+
+  <!-- OPPORTUNITY FORM -->
+
+  <section class="panel" id="opportunityPanel">
+
+    <h2 id="opportunityFormTitle">
+      Add New Opportunity
+    </h2>
+
+    <input type="hidden" id="editId">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Title *</label>
+        <input class="input"
+               id="title"
+               placeholder="Opportunity title">
+      </div>
+
+      <div>
+        <label>Organization</label>
+        <input class="input"
+               id="organization"
+               placeholder="Organization name">
+      </div>
+
+      <div>
+        <label>Category *</label>
+        <select id="category"></select>
+      </div>
+
+      <div>
+        <label>Status</label>
+        <select id="status">
+          <option value="OPEN">OPEN</option>
+          <option value="UPCOMING">UPCOMING</option>
+          <option value="CLOSING SOON">CLOSING SOON</option>
+          <option value="CLOSED">CLOSED</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label>Description</label>
+        <textarea id="description"
+          placeholder="Describe this opportunity..."></textarea>
+      </div>
+
+      <div class="full">
+        <label>Requirements</label>
+        <textarea id="requirements"
+          placeholder="Requirements..."></textarea>
+      </div>
+
+      <div class="full">
+        <label>Benefits</label>
+        <textarea id="benefits"
+          placeholder="Benefits..."></textarea>
+      </div>
+
+      <div>
+        <label>Source URL</label>
+        <input class="input"
+               id="sourceUrl"
+               type="url"
+               placeholder="https://example.com/source">
+      </div>
+
+      <div>
+        <label>Application URL</label>
+        <input class="input"
+               id="applicationUrl"
+               type="url"
+               placeholder="https://example.com/apply">
+      </div>
+
+      <div>
+        <label>Start Date</label>
+        <input class="input"
+               id="startDate"
+               type="date">
+      </div>
+
+      <div>
+        <label>Start Time</label>
+        <input class="input"
+               id="startTime"
+               type="time">
+      </div>
+
+      <div>
+        <label>Deadline Date</label>
+        <input class="input"
+               id="deadlineDate"
+               type="date">
+      </div>
+
+      <div>
+        <label>Deadline Time</label>
+        <input class="input"
+               id="deadlineTime"
+               type="time">
+      </div>
+
+      <div>
+        <label>
+          <input id="featured" type="checkbox">
+          Featured Opportunity
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input id="published"
+                 type="checkbox"
+                 checked>
+          Published
+        </label>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+
+      <button class="btn"
+              onclick="saveOpportunity()">
+        Save Opportunity
+      </button>
+
+      <button class="btn gray"
+              onclick="clearOpportunityForm()">
+        Clear
+      </button>
+
+    </div>
+
+    <div id="opportunityMessage"
+         class="notice"></div>
+
+  </section>
+
+
+  <!-- OPPORTUNITIES TABLE -->
+
+  <section class="panel">
+
+    <h2>Opportunity Management</h2>
+
+    <div class="form-actions">
+
+      <button class="btn blue"
+              onclick="loadAll()">
+        Refresh
+      </button>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Organization</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Published</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="opportunityTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- SOURCE PANEL -->
+
+  <section class="panel" id="sourcePanel">
+
+    <h2>Source Management</h2>
+
+    <div class="form-grid">
+
+      <div>
+        <label>Source Name</label>
+        <input id="sourceName"
+               class="input"
+               placeholder="Website / organization">
+      </div>
+
+      <div>
+        <label>Source URL</label>
+        <input id="sourceUrlAdmin"
+               class="input"
+               type="url"
+               placeholder="https://example.com">
+      </div>
+
+      <div class="full">
+        <label>Description</label>
+        <textarea id="sourceDescription"
+          placeholder="Source description"></textarea>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+
+      <button class="btn"
+              onclick="addSource()">
+        Add Source
+      </button>
+
+      <button class="btn blue"
+              onclick="loadSources()">
+        Refresh Sources
+      </button>
+
+    </div>
+
+    <div id="sourceMessage"
+         class="notice"></div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>URL</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="sourceTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- SUBSCRIBERS -->
+
+  <section class="panel">
+
+    <h2>Subscribers</h2>
+
+    <div class="form-actions">
+
+      <button class="btn blue"
+              onclick="loadSubscribers()">
+        Refresh Subscribers
+      </button>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Categories</th>
+            <th>Status</th>
+            <th>Subscribed</th>
+          </tr>
+        </thead>
+
+        <tbody id="subscriberTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- NOTIFICATIONS -->
+
+  <section class="panel"
+           id="notificationPanel">
+
+    <h2>Notification Center</h2>
+
+    <p>
+      Adding an opportunity does NOT automatically send emails.
+      Use this section when you want to notify subscribers.
+    </p>
+
+    <div class="form-grid">
+
+      <div>
+        <label>Category</label>
+        <select id="notificationCategory"></select>
+      </div>
+
+      <div>
+        <label>Recipients</label>
+        <select id="recipientType">
+          <option value="CATEGORY">
+            Subscribers in selected category
+          </option>
+
+          <option value="ALL">
+            All Active Subscribers
+          </option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label>Notification Subject</label>
+        <input id="notificationSubject"
+               class="input"
+               placeholder="New opportunity from SOBANUKIRWA TV">
+      </div>
+
+      <div class="full">
+        <label>Message</label>
+
+        <textarea id="notificationMessage"
+          placeholder="Write your notification message here..."></textarea>
+      </div>
+
+    </div>
+
+    <div class="notification-preview"
+         id="notificationPreview">
+      Your notification preview will appear here.
+    </div>
+
+    <div class="form-actions">
+
+      <button class="btn"
+              onclick="sendNotification()">
+        SEND NOTIFICATION
+      </button>
+
+      <button class="btn yellow"
+              onclick="sendTestEmail()">
+        SEND TEST EMAIL
+      </button>
+
+    </div>
+
+    <div id="notificationMessageBox"
+         class="notice"></div>
+
+  </section>
+
+
+  <!-- SYSTEM -->
+
+  <section class="panel">
+
+    <h2>System</h2>
+
+    <div class="form-actions">
+
+      <button class="btn blue"
+              onclick="checkSystem()">
+        Check System
+      </button>
+
+      <button class="btn yellow"
+              onclick="sendTestEmail()">
+        Test Admin Email
+      </button>
+
+      <button class="btn red"
+              onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+    <div id="systemMessage"
+         class="notice"></div>
+
+  </section>
+
+</main>
+
+<footer>
+  SOBANUKIRWA TV — ONLINE • ON TIME
+</footer>
+
+</section>
+
+
+<script>
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxKH0B-LKpUBrZ5Ne8u3M9HoY2-wDdsMfn_zbidYfsxt2Xq1FbKXhDLt4vPuimhq4o/exec";
+
+let categories = [];
+let opportunities = [];
+let sources = [];
+let subscribers = [];
+
+let loggedIn = false;
+
+
+/* =========================
+   API
+========================= */
+
+async function apiGet(params={}){
+
+  const url = new URL(API_URL);
+
+  Object.keys(params).forEach(k=>{
+    if(params[k] !== undefined &&
+       params[k] !== null){
+      url.searchParams.set(k,params[k]);
+    }
+  });
+
+  const response =
+    await fetch(url.toString());
+
+  return await response.json();
+}
+
+
+async function apiPost(data){
+
+  const response =
+    await fetch(API_URL,{
+      method:"POST",
+      body:new URLSearchParams(data)
+    });
+
+  return await response.json();
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+  const username =
+    document.getElementById("username").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const message =
+    document.getElementById("loginMessage");
+
+  if(!username || !password){
+
+    showMessage(
+      message,
+      "Enter username and password.",
+      false
+    );
+
+    return;
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+        action:"login",
+        username:username,
+        password:password
+      });
+
+    if(result.success){
+
+      loggedIn = true;
+
+      sessionStorage.setItem(
+        "stv_admin_login",
+        "YES"
+      );
+
+      document
+        .getElementById("loginPage")
+        .style.display="none";
+
+      document
+        .getElementById("adminPage")
+        .style.display="block";
+
+      await loadAll();
+
+    }else{
+
+      showMessage(
+        message,
+        result.message || "Invalid login.",
+        false
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      message,
+      "Unable to connect to Apps Script.",
+      false
+    );
+  }
+}
+
+
+function logout(){
+
+  loggedIn=false;
+
+  sessionStorage.removeItem(
+    "stv_admin_login"
+  );
+
+  location.reload();
+}
+
+
+/* =========================
+   LOAD
+========================= */
+
+async function loadAll(){
+
+  await loadCategories();
+  await loadOpportunities();
+  await loadSources();
+  await loadSubscribers();
+  await loadStats();
+
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+async function loadCategories(){
+
+  try{
+
+    const result =
+      await apiGet({
+        action:"categories"
+      });
+
+    if(result.success){
+
+      categories =
+        result.categories || [];
+
+      populateCategories();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+function populateCategories(){
+
+  const fields = [
+    "category",
+    "notificationCategory"
+  ];
+
+  fields.forEach(id=>{
+
+    const select =
+      document.getElementById(id);
+
+    if(!select) return;
+
+    select.innerHTML =
+      `<option value="">Select category</option>`;
+
+    categories.forEach(category=>{
+
+      const option =
+        document.createElement("option");
+
+      option.value=category;
+      option.textContent=category;
+
+      select.appendChild(option);
+
+    });
+
+  });
+
+}
+
+
+/* =========================
+   OPPORTUNITIES
+========================= */
+
+async function loadOpportunities(){
+
+  try{
+
+    const result =
+      await apiGet({
+        action:"getOpportunities"
+      });
+
+    if(!result.success){
+
+      const alternative =
+        await apiGet({
+          action:"opportunities"
+        });
+
+      if(alternative.success){
+        opportunities =
+          alternative.opportunities || [];
+      }
+
+    }else{
+
+      opportunities =
+        result.opportunities || [];
+
+    }
+
+    renderOpportunityTable();
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+function renderOpportunityTable(){
+
+  const tbody =
+    document.getElementById(
+      "opportunityTable"
+    );
+
+  if(!opportunities.length){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="8">
+          No opportunities found.
+        </td>
+      </tr>`;
+
+    return;
+  }
+
+  tbody.innerHTML =
+    opportunities.map(item=>{
+
+      const status =
+        String(item.Status || "OPEN");
+
+      const statusClass =
+        status === "CLOSED"
+          ? "pill-closed"
+          : status === "UPCOMING"
+          ? "pill-upcoming"
+          : status === "CLOSING SOON"
+          ? "pill-closing"
+          : "pill-open";
+
+      const id =
+        item.ID || item.Id || item.id || "";
+
+      return `
+      <tr>
+
+        <td>${escapeHTML(id)}</td>
+
+        <td>
+          <strong>
+            ${escapeHTML(item.Title || "")}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHTML(item.Category || "")}
+        </td>
+
+        <td>
+          ${escapeHTML(item.Organization || "")}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item["Deadline Date"] || ""
+          )}
+          ${escapeHTML(
+            item["Deadline Time"] || ""
+          )}
+        </td>
+
+        <td>
+          <span class="pill ${statusClass}">
+            ${escapeHTML(status)}
+          </span>
+        </td>
+
+        <td>
+          ${String(item.Published || "").toUpperCase()}
+        </td>
+
+        <td>
+
+          <div class="action-buttons">
+
+            <button
+              class="btn blue"
+              onclick='editOpportunity(${JSON.stringify(item)})'>
+              Edit
+            </button>
+
+            <button
+              class="btn red"
+              onclick="deleteOpportunity('${escapeJS(id)}')">
+              Delete
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+      `;
+
+    }).join("");
+}
+
+
+/* =========================
+   SAVE OPPORTUNITY
+========================= */
+
+async function saveOpportunity(){
+
+  const editId =
+    document.getElementById("editId").value.trim();
+
+  const title =
+    document.getElementById("title").value.trim();
+
+  const category =
+    document.getElementById("category").value;
+
+  if(!title || !category){
+
+    showMessage(
+      document.getElementById(
+        "opportunityMessage"
+      ),
+      "Title and category are required.",
+      false
+    );
+
+    return;
+  }
+
+  const data = {
+
+    action:
+      editId
+        ? "updateOpportunity"
+        : "addOpportunity",
+
+    id:editId,
+
+    title:title,
+
+    category:category,
+
+    organization:
+      document
+        .getElementById("organization")
+        .value.trim(),
+
+    description:
+      document
+        .getElementById("description")
+        .value.trim(),
+
+    requirements:
+      document
+        .getElementById("requirements")
+        .value.trim(),
+
+    benefits:
+      document
+        .getElementById("benefits")
+        .value.trim(),
+
+    sourceUrl:
+      document
+        .getElementById("sourceUrl")
+        .value.trim(),
+
+    applicationUrl:
+      document
+        .getElementById("applicationUrl")
+        .value.trim(),
+
+    startDate:
+      document
+        .getElementById("startDate")
+        .value,
+
+    startTime:
+      document
+        .getElementById("startTime")
+        .value,
+
+    deadlineDate:
+      document
+        .getElementById("deadlineDate")
+        .value,
+
+    deadlineTime:
+      document
+        .getElementById("deadlineTime")
+        .value,
+
+    status:
+      document
+        .getElementById("status")
+        .value,
+
+    featured:
+      document
+        .getElementById("featured")
+        .checked
+        ? "YES"
+        : "NO",
+
+    published:
+      document
+        .getElementById("published")
+        .checked
+        ? "YES"
+        : "NO"
+
+  };
+
+  try{
+
+    const result =
+      await apiPost(data);
+
+    if(result.success){
+
+      showMessage(
+        document.getElementById(
+          "opportunityMessage"
+        ),
+        result.message ||
+        "Opportunity saved successfully.",
+        true
+      );
+
+      clearOpportunityForm();
+
+      await loadOpportunities();
+      await loadStats();
+
+    }else{
+
+      showMessage(
+        document.getElementById(
+          "opportunityMessage"
+        ),
+        result.message ||
+        "Unable to save opportunity.",
+        false
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      document.getElementById(
+        "opportunityMessage"
+      ),
+      "Connection error.",
+      false
+    );
+  }
+}
+
+
+/* =========================
+   EDIT
+========================= */
+
+function editOpportunity(item){
+
+  document.getElementById("editId").value =
+    item.ID || item.Id || item.id || "";
+
+  document.getElementById("title").value =
+    item.Title || "";
+
+  document.getElementById("category").value =
+    item.Category || "";
+
+  document.getElementById("organization").value =
+    item.Organization || "";
+
+  document.getElementById("description").value =
+    item.Description || "";
+
+  document.getElementById("requirements").value =
+    item.Requirements || "";
+
+  document.getElementById("benefits").value =
+    item.Benefits || "";
+
+  document.getElementById("sourceUrl").value =
+    item["Source URL"] || "";
+
+  document.getElementById("applicationUrl").value =
+    item["Application URL"] || "";
+
+  document.getElementById("startDate").value =
+    item["Start Date"] || "";
+
+  document.getElementById("startTime").value =
+    item["Start Time"] || "";
+
+  document.getElementById("deadlineDate").value =
+    item["Deadline Date"] || "";
+
+  document.getElementById("deadlineTime").value =
+    item["Deadline Time"] || "";
+
+  document.getElementById("status").value =
+    item.Status || "OPEN";
+
+  document.getElementById("featured").checked =
+    String(item.Featured).toUpperCase() === "YES";
+
+  document.getElementById("published").checked =
+    String(item.Published).toUpperCase() !== "NO";
+
+  document.getElementById(
+    "opportunityFormTitle"
+  ).textContent =
+    "Edit Opportunity";
+
+  document
+    .getElementById("opportunityPanel")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearOpportunityForm(){
+
+  [
+    "editId",
+    "title",
+    "organization",
+    "description",
+    "requirements",
+    "benefits",
+    "sourceUrl",
+    "applicationUrl",
+    "startDate",
+    "startTime",
+    "deadlineDate",
+    "deadlineTime"
+  ].forEach(id=>{
+    document.getElementById(id).value="";
+  });
+
+  document.getElementById("status").value="OPEN";
+
+  document.getElementById("featured").checked=false;
+
+  document.getElementById("published").checked=true;
+
+  document.getElementById(
+    "opportunityFormTitle"
+  ).textContent =
+    "Add New Opportunity";
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteOpportunity(id){
+
+  if(!confirm(
+    "Are you sure you want to delete this opportunity?"
+  )){
+    return;
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+        action:"deleteOpportunity",
+        id:id
+      });
+
+    if(result.success){
+
+      alert(
+        result.message ||
+        "Opportunity deleted."
+      );
+
+      await loadOpportunities();
+      await loadStats();
+
+    }else{
+
+      alert(
+        result.message ||
+        "Delete failed."
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    alert("Connection error.");
+  }
+}
+
+
+/* =========================
+   SOURCES
+========================= */
+
+async function addSource(){
+
+  const name =
+    document.getElementById(
+      "sourceName"
+    ).value.trim();
+
+  const url =
+    document.getElementById(
+      "sourceUrlAdmin"
+    ).value.trim();
+
+  const description =
+    document.getElementById(
+      "sourceDescription"
+    ).value.trim();
+
+  if(!name || !url){
+
+    showMessage(
+      document.getElementById(
+        "sourceMessage"
+      ),
+      "Source name and URL are required.",
+      false
+    );
+
+    return;
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+        action:"addSource",
+        name:name,
+        url:url,
+        description:description
+      });
+
+    if(result.success){
+
+      showMessage(
+        document.getElementById(
+          "sourceMessage"
+        ),
+        result.message ||
+        "Source added.",
+        true
+      );
+
+      document.getElementById(
+        "sourceName"
+      ).value="";
+
+      document.getElementById(
+        "sourceUrlAdmin"
+      ).value="";
+
+      document.getElementById(
+        "sourceDescription"
+      ).value="";
+
+      await loadSources();
+      await loadStats();
+
+    }else{
+
+      showMessage(
+        document.getElementById(
+          "sourceMessage"
+        ),
+        result.message ||
+        "Unable to add source.",
+        false
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+}
+
+
+async function loadSources(){
+
+  try{
+
+    const result =
+      await apiGet({
+        action:"getSources"
+      });
+
+    sources =
+      result.sources || [];
+
+    renderSources();
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+}
+
+
+function renderSources(){
+
+  const tbody =
+    document.getElementById(
+      "sourceTable"
+    );
+
+  if(!sources.length){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="5">
+          No sources found.
+        </td>
+      </tr>`;
+
+    return;
+  }
+
+  tbody.innerHTML =
+    sources.map(source=>{
+
+      const id =
+        source.ID ||
+        source.Id ||
+        source.id ||
+        "";
+
+      return `
+      <tr>
+
+        <td>${escapeHTML(id)}</td>
+
+        <td>
+          ${escapeHTML(
+            source.Name ||
+            source["Source Name"] ||
+            ""
+          )}
+        </td>
+
+        <td>
+          <a
+            href="${escapeAttribute(
+              source.URL ||
+              source.Url ||
+              source["Source URL"] ||
+              ""
+            )}"
+            target="_blank">
+            Open
+          </a>
+        </td>
+
+        <td>
+          ${escapeHTML(
+            source.Description || ""
+          )}
+        </td>
+
+        <td>
+
+          <button
+            class="btn red"
+            onclick="deleteSource('${escapeJS(id)}')">
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+      `;
+
+    }).join("");
+}
+
+
+async function deleteSource(id){
+
+  if(!confirm(
+    "Delete this source?"
+  )){
+    return;
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+        action:"deleteSource",
+        id:id
+      });
+
+    alert(
+      result.message ||
+      "Done."
+    );
+
+    await loadSources();
+    await loadStats();
+
+  }catch(error){
+
+    alert("Connection error.");
+  }
+}
+
+
+/* =========================
+   SUBSCRIBERS
+========================= */
+
+async function loadSubscribers(){
+
+  try{
+
+    const result =
+      await apiGet({
+        action:"getSubscribers"
+      });
+
+    subscribers =
+      result.subscribers || [];
+
+    renderSubscribers();
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+}
+
+
+function renderSubscribers(){
+
+  const tbody =
+    document.getElementById(
+      "subscriberTable"
+    );
+
+  if(!subscribers.length){
+
+    tbody.innerHTML =
+      `<tr>
+        <td colspan="5">
+          No subscribers found.
+        </td>
+      </tr>`;
+
+    return;
+  }
+
+  tbody.innerHTML =
+    subscribers.map(item=>{
+
+      let cats=[];
+
+      categories.forEach(category=>{
+
+        const key =
+          normalizeKey(category);
+
+        if(
+          String(
+            item[key] || ""
+          ).toUpperCase()
+          === "YES"
+        ){
+          cats.push(category);
+        }
+
+      });
+
+      return `
+      <tr>
+
+        <td>
+          ${escapeHTML(
+            item.Email || ""
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item.Name || ""
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            cats.join(", ")
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item.Status || "ACTIVE"
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            item["Subscribed At"] || ""
+          )}
+        </td>
+
+      </tr>
+      `;
+
+    }).join("");
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+async function loadStats(){
+
+  try{
+
+    const result =
+      await apiGet({
+        action:"stats"
+      });
+
+    if(!result.success) return;
+
+    const stats =
+      result.stats || result;
+
+    document.getElementById(
+      "statOpportunities"
+    ).textContent =
+      stats.opportunities ||
+      stats.totalOpportunities ||
+      opportunities.length ||
+      0;
+
+    document.getElementById(
+      "statOpen"
+    ).textContent =
+      stats.open || 0;
+
+    document.getElementById(
+      "statClosing"
+    ).textContent =
+      stats.closingSoon || 0;
+
+    document.getElementById(
+      "statClosed"
+    ).textContent =
+      stats.closed || 0;
+
+    document.getElementById(
+      "statSubscribers"
+    ).textContent =
+      stats.subscribers || subscribers.length || 0;
+
+    document.getElementById(
+      "statSources"
+    ).textContent =
+      stats.sources || sources.length || 0;
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+async function sendNotification(){
+
+  const category =
+    document.getElementById(
+      "notificationCategory"
+    ).value;
+
+  const recipientType =
+    document.getElementById(
+      "recipientType"
+    ).value;
+
+  const subject =
+    document.getElementById(
+      "notificationSubject"
+    ).value.trim();
+
+  const message =
+    document.getElementById(
+      "notificationMessage"
+    ).value.trim();
+
+  const box =
+    document.getElementById(
+      "notificationMessageBox"
+    );
+
+  if(
+    !subject ||
+    !message ||
+    (
+      recipientType === "CATEGORY"
+      && !category
+    )
+  ){
+
+    showMessage(
+      box,
+      "Please complete notification details.",
+      false
+    );
+
+    return;
+  }
+
+  if(!confirm(
+    "Send this notification to subscribers?"
+  )){
+    return;
+  }
+
+  try{
+
+    const result =
+      await apiPost({
+
+        action:"sendNotification",
+
+        category:category,
+
+        recipientType:recipientType,
+
+        subject:subject,
+
+        message:message
+
+      });
+
+    if(result.success){
+
+      showMessage(
+        box,
+        result.message ||
+        "Notification sent successfully.",
+        true
+      );
+
+    }else{
+
+      showMessage(
+        box,
+        result.message ||
+        "Notification failed.",
+        false
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      box,
+      "Connection error.",
+      false
+    );
+  }
+}
+
+
+async function sendTestEmail(){
+
+  try{
+
+    const result =
+      await apiPost({
+        action:"sendTestEmail"
+      });
+
+    showMessage(
+      document.getElementById(
+        "systemMessage"
+      ),
+      result.message ||
+      "Test email request completed.",
+      result.success
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      document.getElementById(
+        "systemMessage"
+      ),
+      "Unable to send test email.",
+      false
+    );
+  }
+}
+
+
+/* =========================
+   SYSTEM CHECK
+========================= */
+
+async function checkSystem(){
+
+  try{
+
+    const result =
+      await apiGet({
+        action:"status"
+      });
+
+    showMessage(
+      document.getElementById(
+        "systemMessage"
+      ),
+      result.message ||
+      "System is online.",
+      result.success !== false
+    );
+
+  }catch(error){
+
+    showMessage(
+      document.getElementById(
+        "systemMessage"
+      ),
+      "System connection failed.",
+      false
+    );
+  }
+}
+
+
+/* =========================
+   UI
+========================= */
+
+function showSection(id){
+
+  const element =
+    document.getElementById(id);
+
+  if(element){
+
+    element.scrollIntoView({
+      behavior:"smooth"
+    });
+
+  }
+}
+
+
+function showMessage(element,text,success){
+
+  element.textContent=text;
+
+  element.style.display="block";
+
+  element.className =
+    "notice " +
+    (success ? "success" : "error");
+}
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function escapeJS(value){
+
+  return String(value ?? "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+}
+
+
+function escapeAttribute(value){
+
+  const v =
+    String(value || "");
+
+  if(!/^https?:\/\//i.test(v)){
+    return "#";
+  }
+
+  return v
+    .replace(/"/g,"%22")
+    .replace(/'/g,"%27");
+}
+
+
+function normalizeKey(value){
+
+  return String(value || "")
+    .toLowerCase()
+    .trim()
+    .replace(/&/g,"and")
+    .replace(/[^a-z0-9]+/g,"_")
+    .replace(/^_+|_+$/g,"");
+}
+
+
+/* =========================
+   PREVIEW
+========================= */
+
+document
+  .getElementById("notificationMessage")
+  .addEventListener("input",updatePreview);
+
+document
+  .getElementById("notificationSubject")
+  .addEventListener("input",updatePreview);
+
+
+function updatePreview(){
+
+  const subject =
+    document.getElementById(
+      "notificationSubject"
+    ).value;
+
+  const message =
+    document.getElementById(
+      "notificationMessage"
+    ).value;
+
+  document.getElementById(
+    "notificationPreview"
+  ).innerHTML = `
+
+    <strong>
+      ${escapeHTML(
+        subject ||
+        "Notification subject"
+      )}
+    </strong>
+
+    <br><br>
+
+    ${escapeHTML(
+      message ||
+      "Your notification preview will appear here."
+    ).replace(/\n/g,"<br>")}
+
+  `;
+}
+
+
+/* =========================
+   AUTO LOGIN STATE
+========================= */
+
+if(
+  sessionStorage.getItem(
+    "stv_admin_login"
+  ) === "YES"
+){
+
+  document
+    .getElementById("loginPage")
+    .style.display="none";
+
+  document
+    .getElementById("adminPage")
+    .style.display="block";
+
+  loggedIn=true;
+
+  loadAll();
+}
+
+</script>
+
+</body>
+</html>
