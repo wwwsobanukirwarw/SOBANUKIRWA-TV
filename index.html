@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOBANUKIRWA TV | ONLINE • ON TIME</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+header{
+  background:linear-gradient(135deg,#006400,#008f39,#00a651);
+  color:white;
+  padding:18px 5%;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 15px #0003;
+}
+.nav{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo{
+  font-size:25px;
+  font-weight:900;
+}
+.logo span{
+  display:block;
+  font-size:12px;
+  letter-spacing:2px;
+  color:#ffe600;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:18px;
+  font-weight:bold;
+}
+nav a:hover{color:#ffe600}
+
+.hero{
+  background:linear-gradient(135deg,#003b1f,#006400,#009c45);
+  color:white;
+  padding:65px 20px;
+  text-align:center;
+}
+.hero h1{
+  margin:0;
+  font-size:45px;
+}
+.hero h1 span{color:#ffe600}
+.hero p{
+  font-size:20px;
+  margin:12px auto 25px;
+}
+.badge{
+  display:inline-block;
+  background:#ffe600;
+  color:#111;
+  padding:9px 18px;
+  border-radius:30px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1200px;
+  margin:30px auto;
+  padding:0 18px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:25px;
+}
+.section-title h2{
+  margin-bottom:5px;
+  color:#006400;
+}
+.section-title p{color:#666}
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:30px;
+}
+.cat-btn{
+  border:1px solid #008f39;
+  background:white;
+  color:#006400;
+  padding:10px 15px;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.cat-btn.active,
+.cat-btn:hover{
+  background:#006400;
+  color:white;
+}
+
+.search-box{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+.search-box input{
+  flex:1;
+  padding:15px;
+  border:1px solid #ccd3dd;
+  border-radius:8px;
+  font-size:16px;
+}
+.search-box button,
+button{
+  border:0;
+  border-radius:8px;
+  padding:12px 18px;
+  background:#006400;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+button:hover{background:#004b00}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:20px;
+}
+.card{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 5px 18px #00000012;
+  border:1px solid #e4e8ef;
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px #0002;
+}
+.card-top{
+  padding:15px 18px;
+  background:#f8fafc;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.category{
+  color:#006400;
+  font-size:13px;
+  font-weight:bold;
+}
+.status{
+  padding:5px 9px;
+  border-radius:15px;
+  font-size:11px;
+  font-weight:bold;
+}
+.open{background:#d9f8e3;color:#08752a}
+.upcoming{background:#e3efff;color:#1256a3}
+.closing{background:#fff0c7;color:#946200}
+.closed{background:#eee;color:#777}
+
+.card-body{padding:18px}
+.card h3{
+  margin:0 0 10px;
+  font-size:20px;
+  color:#182234;
+}
+.org{
+  font-size:14px;
+  color:#555;
+  margin-bottom:10px;
+}
+.desc{
+  color:#555;
+  line-height:1.55;
+  font-size:14px;
+}
+.deadline{
+  margin:15px 0;
+  background:#fff7df;
+  border-left:4px solid #ffbf00;
+  padding:10px;
+  font-size:13px;
+}
+.card-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.card-actions a{
+  text-decoration:none;
+  padding:10px 13px;
+  border-radius:7px;
+  font-size:13px;
+  font-weight:bold;
+}
+.apply{
+  background:#006400;
+  color:white;
+}
+.source{
+  background:#eef3f8;
+  color:#14507b;
+}
+
+.loading,
+.empty,
+.error{
+  text-align:center;
+  padding:35px;
+  background:white;
+  border-radius:12px;
+  color:#666;
+}
+.error{color:#a00000}
+
+.subscribe{
+  margin-top:55px;
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 5px 20px #00000010;
+}
+.subscribe h2{
+  color:#006400;
+  margin-top:0;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+.form-group label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+  font-size:14px;
+}
+.form-group input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccd3dd;
+  border-radius:7px;
+}
+.interests{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:8px;
+  margin:15px 0;
+}
+.interest{
+  background:#f6f8fa;
+  padding:9px;
+  border-radius:7px;
+}
+.interest label{
+  font-size:13px;
+}
+
+.notice{
+  padding:12px;
+  margin-top:15px;
+  border-radius:7px;
+  display:none;
+}
+.success{
+  background:#dff7e7;
+  color:#07652b;
+}
+.fail{
+  background:#ffe0e0;
+  color:#a00000;
+}
+
+footer{
+  margin-top:50px;
+  background:#092617;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+}
+footer strong{color:#ffe600}
+.admin-link{
+  display:inline-block;
+  margin-top:12px;
+  color:#b9d8c4;
+  text-decoration:none;
+  font-size:12px;
+}
+
+@media(max-width:700px){
+  .nav{flex-direction:column}
+  nav a{margin:0 7px;font-size:13px}
+  .hero h1{font-size:32px}
+  .form-grid{grid-template-columns:1fr}
+  .search-box{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      SOBANUKIRWA TV
+      <span>ONLINE • ON TIME</span>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#opportunities">Opportunities</a>
+      <a href="#subscribe">Subscribe</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="badge">📢 OPPORTUNITIES & INFORMATION</div>
+  <h1>SOBANUKIRWA <span>TV</span></h1>
+  <p>Find opportunities online, on time.</p>
+  <p>Scholarships • Jobs • Internships • Training • Fellowships • Competitions</p>
+</section>
+
+<main class="container" id="opportunities">
+
+  <div class="section-title">
+    <h2>Latest Opportunities</h2>
+    <p>Discover useful opportunities and important announcements.</p>
+  </div>
+
+  <div class="categories" id="categories">
+    <button class="cat-btn active" onclick="filterCategory('ALL',this)">All</button>
+  </div>
+
+  <div class="search-box">
+    <input id="searchInput"
+           type="text"
+           placeholder="Search opportunity, organization or category..."
+           oninput="renderOpportunities()">
+    <button onclick="loadOpportunities()">Refresh</button>
+  </div>
+
+  <div id="opportunitiesList" class="grid">
+    <div class="loading">Loading opportunities...</div>
+  </div>
+
+  <section class="subscribe" id="subscribe">
+    <h2>Subscribe to SOBANUKIRWA TV</h2>
+    <p>
+      Choose the categories you are interested in.
+      You will receive notifications when the admin sends them.
+    </p>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Your Email</label>
+        <input id="email" type="email" placeholder="example@gmail.com">
+      </div>
+
+      <div class="form-group">
+        <label>Your Name (optional)</label>
+        <input id="subscriberName" type="text" placeholder="Your name">
+      </div>
+    </div>
+
+    <h3>Select your interests</h3>
+
+    <div class="interests" id="interestList"></div>
+
+    <button onclick="subscribeUser()">Subscribe</button>
+
+    <div id="subscribeMessage" class="notice"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>SOBANUKIRWA TV</strong></p>
+  <p>ONLINE • ON TIME</p>
+  <p>Useful information. Opportunities. Notifications.</p>
+  <p>© <span id="year"></span> SOBANUKIRWA TV</p>
+  <a class="admin-link" href="admin.html">Admin Panel</a>
+</footer>
+
+<script>
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxKH0B-LKpUBrZ5Ne8u3M9HoY2-wDdsMfn_zbidYfsxt2Xq1FbKXhDLt4vPuimhq4o/exec";
+
+let opportunities = [];
+let categories = [];
+let currentCategory = "ALL";
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function escapeHTML(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+async function apiGet(params={}){
+  const url = new URL(API_URL);
+
+  Object.keys(params).forEach(k=>{
+    if(params[k] !== undefined && params[k] !== null){
+      url.searchParams.set(k,params[k]);
+    }
+  });
+
+  const response = await fetch(url.toString());
+  return await response.json();
+}
+
+async function apiPost(data){
+  const response = await fetch(API_URL,{
+    method:"POST",
+    body:new URLSearchParams(data)
+  });
+
+  return await response.json();
+}
+
+async function loadCategories(){
+  try{
+    const result = await apiGet({action:"categories"});
+
+    if(result.success){
+      categories = result.categories || [];
+    }
+  }catch(e){
+    console.error(e);
+  }
+
+  buildCategoryButtons();
+  buildInterestList();
+}
+
+function buildCategoryButtons(){
+
+  const box = document.getElementById("categories");
+
+  box.innerHTML =
+    `<button class="cat-btn active"
+      onclick="filterCategory('ALL',this)">All</button>`;
+
+  categories.forEach(category=>{
+    const btn = document.createElement("button");
+
+    btn.className = "cat-btn";
+    btn.textContent = category;
+    btn.onclick = ()=>filterCategory(category,btn);
+
+    box.appendChild(btn);
+  });
+}
+
+function buildInterestList(){
+
+  const box = document.getElementById("interestList");
+
+  box.innerHTML = "";
+
+  categories.forEach(category=>{
+
+    const key = normalizeKey(category);
+
+    const div = document.createElement("div");
+    div.className = "interest";
+
+    div.innerHTML = `
+      <label>
+        <input type="checkbox"
+               name="${key}"
+               value="YES">
+        ${escapeHTML(category)}
+      </label>
+    `;
+
+    box.appendChild(div);
+  });
+}
+
+function normalizeKey(value){
+  return String(value || "")
+    .toLowerCase()
+    .trim()
+    .replace(/&/g,"and")
+    .replace(/[^a-z0-9]+/g,"_")
+    .replace(/^_+|_+$/g,"");
+}
+
+function filterCategory(category,button){
+
+  currentCategory = category;
+
+  document.querySelectorAll(".cat-btn")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderOpportunities();
+}
+
+async function loadOpportunities(){
+
+  const box = document.getElementById("opportunitiesList");
+
+  box.innerHTML =
+    `<div class="loading">Loading opportunities...</div>`;
+
+  try{
+
+    const result = await apiGet({
+      action:"opportunities"
+    });
+
+    if(!result.success){
+      throw new Error(result.message || "Failed");
+    }
+
+    opportunities = result.opportunities || [];
+
+    renderOpportunities();
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML = `
+      <div class="error">
+        Unable to load opportunities.<br>
+        Please check the Apps Script deployment.
+      </div>
+    `;
+  }
+}
+
+function renderOpportunities(){
+
+  const box = document.getElementById("opportunitiesList");
+
+  const search =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+  let list = opportunities.filter(item=>{
+
+    const category = String(item.Category || "");
+
+    const matchesCategory =
+      currentCategory === "ALL" ||
+      category === currentCategory;
+
+    const text = `
+      ${item.Title || ""}
+      ${item.Organization || ""}
+      ${item.Description || ""}
+      ${item.Category || ""}
+    `.toLowerCase();
+
+    return matchesCategory && text.includes(search);
+  });
+
+  if(!list.length){
+
+    box.innerHTML = `
+      <div class="empty">
+        No opportunities found.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML = list.map(item=>{
+
+    const status = String(item.Status || "OPEN");
+
+    let statusClass = "open";
+
+    if(status === "CLOSED") statusClass = "closed";
+    else if(status === "UPCOMING") statusClass = "upcoming";
+    else if(status === "CLOSING SOON") statusClass = "closing";
+
+    const deadline =
+      item["Deadline Date"]
+      ? `${item["Deadline Date"]} ${item["Deadline Time"] || ""}`
+      : "Not specified";
+
+    return `
+      <article class="card">
+
+        <div class="card-top">
+          <span class="category">
+            ${escapeHTML(item.Category || "Other")}
+          </span>
+
+          <span class="status ${statusClass}">
+            ${escapeHTML(status)}
+          </span>
+        </div>
+
+        <div class="card-body">
+
+          <h3>
+            ${escapeHTML(item.Title || "Untitled Opportunity")}
+          </h3>
+
+          <div class="org">
+            🏢 ${escapeHTML(item.Organization || "")}
+          </div>
+
+          <div class="desc">
+            ${escapeHTML(item.Description || "No description available.")}
+          </div>
+
+          <div class="deadline">
+            <strong>Deadline:</strong><br>
+            ${escapeHTML(deadline)}
+          </div>
+
+          <div class="card-actions">
+
+            ${
+              item["Application URL"]
+              ? `<a class="apply"
+                    href="${escapeAttribute(item["Application URL"])}"
+                    target="_blank"
+                    rel="noopener">
+                    Apply Now
+                 </a>`
+              : ""
+            }
+
+            ${
+              item["Source URL"]
+              ? `<a class="source"
+                    href="${escapeAttribute(item["Source URL"])}"
+                    target="_blank"
+                    rel="noopener">
+                    Source
+                 </a>`
+              : ""
+            }
+
+          </div>
+
+        </div>
+
+      </article>
+    `;
+
+  }).join("");
+}
+
+function escapeAttribute(value){
+
+  const v = String(value || "");
+
+  if(!/^https?:\/\//i.test(v)){
+    return "#";
+  }
+
+  return v
+    .replace(/"/g,"%22")
+    .replace(/'/g,"%27");
+}
+
+async function subscribeUser(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const name =
+    document.getElementById("subscriberName").value.trim();
+
+  const message =
+    document.getElementById("subscribeMessage");
+
+  if(!email){
+
+    showMessage(
+      message,
+      "Please enter your email address.",
+      false
+    );
+
+    return;
+  }
+
+  const selected = {};
+
+  document
+    .querySelectorAll("#interestList input[type=checkbox]")
+    .forEach(cb=>{
+      selected[cb.name] =
+        cb.checked ? "YES" : "NO";
+    });
+
+  if(!Object.values(selected).includes("YES")){
+
+    showMessage(
+      message,
+      "Please select at least one category.",
+      false
+    );
+
+    return;
+  }
+
+  const data = {
+    action:"subscribe",
+    email:email,
+    name:name
+  };
+
+  Object.assign(data,selected);
+
+  try{
+
+    const result = await apiPost(data);
+
+    if(result.success){
+
+      showMessage(
+        message,
+        result.message || "Subscription successful!",
+        true
+      );
+
+      document.getElementById("email").value="";
+      document.getElementById("subscriberName").value="";
+
+      document
+        .querySelectorAll("#interestList input")
+        .forEach(cb=>cb.checked=false);
+
+    }else{
+
+      showMessage(
+        message,
+        result.message || "Subscription failed.",
+        false
+      );
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      message,
+      "Connection error. Please try again.",
+      false
+    );
+  }
+}
+
+function showMessage(element,text,success){
+
+  element.textContent = text;
+  element.style.display = "block";
+
+  element.className =
+    "notice " + (success ? "success" : "fail");
+}
+
+async function start(){
+
+  await loadCategories();
+  await loadOpportunities();
+
+}
+
+start();
+</script>
+
+</body>
+</html>
