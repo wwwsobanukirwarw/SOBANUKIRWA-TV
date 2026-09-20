@@ -3,701 +3,3266 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SOBANUKIRWA TV | ONLINE • ON TIME</title>
 
+<meta name="description"
+      content="SOBANUKIRWA TV - Opportunities, scholarships, jobs, internships, training, fellowships, competitions and useful information.">
+
 <style>
-*{box-sizing:border-box}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:#f4f7fb;
   color:#172033;
 }
+
+a{
+  color:inherit;
+}
+
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 header{
-  background:linear-gradient(135deg,#006400,#008f39,#00a651);
+  background:
+    linear-gradient(
+      135deg,
+      #003b1f,
+      #006400,
+      #008f39,
+      #00a651
+    );
+
   color:white;
-  padding:18px 5%;
+
+  padding:15px 5%;
+
   position:sticky;
   top:0;
+
   z-index:1000;
-  box-shadow:0 3px 15px #0003;
+
+  box-shadow:
+    0 3px 15px #0003;
 }
+
 .nav{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:20px;
 }
+
 .logo{
   font-size:25px;
   font-weight:900;
+  white-space:nowrap;
 }
+
 .logo span{
   display:block;
-  font-size:12px;
+  font-size:11px;
   letter-spacing:2px;
   color:#ffe600;
+  margin-top:3px;
 }
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
 nav a{
   color:white;
   text-decoration:none;
-  margin-left:18px;
+  font-size:14px;
   font-weight:bold;
 }
-nav a:hover{color:#ffe600}
+
+nav a:hover{
+  color:#ffe600;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
-  background:linear-gradient(135deg,#003b1f,#006400,#009c45);
+  position:relative;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      #00a65144,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      #ffe60022,
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #003b1f,
+      #006400,
+      #009c45
+    );
+
   color:white;
-  padding:65px 20px;
+
+  padding:75px 20px;
+
   text-align:center;
+
+  overflow:hidden;
 }
-.hero h1{
-  margin:0;
-  font-size:45px;
+
+.hero:before,
+.hero:after{
+  content:"";
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  border:1px solid #ffffff22;
+  border-radius:50%;
 }
-.hero h1 span{color:#ffe600}
-.hero p{
-  font-size:20px;
-  margin:12px auto 25px;
+
+.hero:before{
+  left:-60px;
+  top:-70px;
 }
+
+.hero:after{
+  right:-50px;
+  bottom:-80px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  margin:auto;
+}
+
 .badge{
   display:inline-block;
+
   background:#ffe600;
   color:#111;
+
   padding:9px 18px;
+
   border-radius:30px;
+
+  font-size:13px;
+  font-weight:bold;
+
+  margin-bottom:18px;
+}
+
+.hero h1{
+  margin:0;
+
+  font-size:48px;
+
+  line-height:1.1;
+}
+
+.hero h1 span{
+  color:#ffe600;
+}
+
+.hero p{
+  font-size:19px;
+  line-height:1.5;
+  margin:12px auto;
+}
+
+.hero-sub{
+  color:#e6f7eb;
+  font-size:15px !important;
+}
+
+.hero-buttons{
+  margin-top:25px;
+
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.hero-btn{
+  display:inline-block;
+
+  text-decoration:none;
+
+  padding:12px 20px;
+
+  border-radius:8px;
+
   font-weight:bold;
 }
 
+.hero-btn.primary{
+  background:#ffe600;
+  color:#111;
+}
+
+.hero-btn.secondary{
+  border:1px solid #ffffff66;
+  background:#ffffff12;
+  color:white;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
 .container{
-  max-width:1200px;
-  margin:30px auto;
+  max-width:1250px;
+  margin:35px auto;
   padding:0 18px;
+}
+
+.section{
+  margin-bottom:55px;
 }
 
 .section-title{
   text-align:center;
   margin-bottom:25px;
 }
+
 .section-title h2{
-  margin-bottom:5px;
+  margin:0 0 7px;
   color:#006400;
+  font-size:29px;
 }
-.section-title p{color:#666}
+
+.section-title p{
+  color:#666;
+  margin:0;
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
 
 .categories{
   display:flex;
+
   flex-wrap:wrap;
-  gap:10px;
+
+  gap:9px;
+
   justify-content:center;
-  margin-bottom:30px;
+
+  margin-bottom:25px;
 }
+
 .cat-btn{
   border:1px solid #008f39;
+
   background:white;
+
   color:#006400;
-  padding:10px 15px;
+
+  padding:9px 14px;
+
   border-radius:25px;
+
   cursor:pointer;
+
   font-weight:bold;
+
+  font-size:13px;
+
+  transition:.2s;
 }
+
 .cat-btn.active,
 .cat-btn:hover{
   background:#006400;
   color:white;
 }
 
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
 .search-box{
   display:flex;
   gap:10px;
   margin-bottom:25px;
 }
+
 .search-box input{
   flex:1;
-  padding:15px;
+
+  padding:14px;
+
   border:1px solid #ccd3dd;
+
   border-radius:8px;
-  font-size:16px;
+
+  font-size:15px;
+
+  background:white;
 }
-.search-box button,
+
+.search-box button{
+  border:0;
+
+  border-radius:8px;
+
+  padding:12px 18px;
+
+  background:#006400;
+
+  color:white;
+
+  cursor:pointer;
+
+  font-weight:bold;
+}
+
+.search-box button:hover{
+  background:#004b00;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
 button{
   border:0;
   border-radius:8px;
-  padding:12px 18px;
+
+  padding:11px 17px;
+
   background:#006400;
   color:white;
+
   cursor:pointer;
+
   font-weight:bold;
 }
-button:hover{background:#004b00}
+
+button:hover{
+  background:#004b00;
+}
+
+
+/* =========================================================
+   GENERAL GRID
+========================================================= */
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(290px,1fr)
+    );
+
   gap:20px;
 }
+
+
+/* =========================================================
+   OPPORTUNITY CARD
+========================================================= */
+
 .card{
   background:white;
+
   border-radius:15px;
+
   overflow:hidden;
-  box-shadow:0 5px 18px #00000012;
+
+  box-shadow:
+    0 5px 18px #00000012;
+
   border:1px solid #e4e8ef;
+
   transition:.25s;
+
+  display:flex;
+  flex-direction:column;
 }
+
 .card:hover{
   transform:translateY(-4px);
-  box-shadow:0 10px 25px #0002;
+
+  box-shadow:
+    0 10px 25px #0002;
 }
+
 .card-top{
-  padding:15px 18px;
+  padding:14px 17px;
+
   background:#f8fafc;
+
   display:flex;
+
   justify-content:space-between;
+
+  align-items:center;
+
   gap:10px;
 }
+
 .category{
   color:#006400;
-  font-size:13px;
+
+  font-size:12px;
+
   font-weight:bold;
 }
+
 .status{
   padding:5px 9px;
-  border-radius:15px;
-  font-size:11px;
-  font-weight:bold;
-}
-.open{background:#d9f8e3;color:#08752a}
-.upcoming{background:#e3efff;color:#1256a3}
-.closing{background:#fff0c7;color:#946200}
-.closed{background:#eee;color:#777}
 
-.card-body{padding:18px}
+  border-radius:15px;
+
+  font-size:10px;
+
+  font-weight:bold;
+
+  white-space:nowrap;
+}
+
+.open{
+  background:#d9f8e3;
+  color:#08752a;
+}
+
+.upcoming{
+  background:#e3efff;
+  color:#1256a3;
+}
+
+.closing{
+  background:#fff0c7;
+  color:#946200;
+}
+
+.closed{
+  background:#eee;
+  color:#777;
+}
+
+.card-body{
+  padding:18px;
+
+  flex:1;
+
+  display:flex;
+  flex-direction:column;
+}
+
 .card h3{
   margin:0 0 10px;
-  font-size:20px;
+
+  font-size:19px;
+
+  line-height:1.35;
+
   color:#182234;
 }
+
 .org{
-  font-size:14px;
+  font-size:13px;
+
   color:#555;
+
   margin-bottom:10px;
 }
+
 .desc{
   color:#555;
+
   line-height:1.55;
+
   font-size:14px;
+
+  white-space:pre-line;
 }
+
 .deadline{
   margin:15px 0;
+
   background:#fff7df;
+
   border-left:4px solid #ffbf00;
+
   padding:10px;
+
   font-size:13px;
 }
+
 .card-actions{
   display:flex;
+
   gap:8px;
+
   flex-wrap:wrap;
+
+  margin-top:auto;
 }
+
 .card-actions a{
   text-decoration:none;
-  padding:10px 13px;
+
+  padding:9px 12px;
+
   border-radius:7px;
-  font-size:13px;
+
+  font-size:12px;
+
   font-weight:bold;
 }
+
 .apply{
   background:#006400;
   color:white;
 }
+
 .source{
   background:#eef3f8;
   color:#14507b;
 }
 
+.featured-label{
+  display:inline-block;
+
+  background:#ffe600;
+  color:#111;
+
+  padding:4px 7px;
+
+  border-radius:5px;
+
+  font-size:9px;
+
+  font-weight:bold;
+
+  margin-bottom:8px;
+}
+
+
+/* =========================================================
+   ARTICLES
+========================================================= */
+
+.article-card{
+  background:white;
+
+  border-radius:15px;
+
+  overflow:hidden;
+
+  border:1px solid #e4e8ef;
+
+  box-shadow:
+    0 5px 18px #00000012;
+
+  transition:.25s;
+}
+
+.article-card:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 10px 25px #0002;
+}
+
+.article-image{
+  width:100%;
+
+  height:190px;
+
+  object-fit:cover;
+
+  display:block;
+
+  background:
+    linear-gradient(
+      135deg,
+      #006400,
+      #00a651
+    );
+}
+
+.article-image-placeholder{
+  width:100%;
+  height:190px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  color:white;
+
+  font-size:30px;
+  font-weight:900;
+
+  background:
+    linear-gradient(
+      135deg,
+      #003b1f,
+      #009c45
+    );
+}
+
+.article-body{
+  padding:18px;
+}
+
+.article-meta{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:9px;
+
+  font-size:11px;
+
+  color:#777;
+}
+
+.article-category{
+  color:#006400;
+  font-weight:bold;
+}
+
+.article-card h3{
+  margin:0 0 10px;
+
+  font-size:20px;
+
+  line-height:1.35;
+
+  color:#182234;
+}
+
+.article-summary{
+  color:#555;
+
+  line-height:1.55;
+
+  font-size:14px;
+
+  white-space:pre-line;
+
+  margin-bottom:15px;
+}
+
+.article-source{
+  color:#777;
+
+  font-size:12px;
+
+  margin-bottom:13px;
+}
+
+.article-actions{
+  display:flex;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+}
+
+.article-actions a{
+  text-decoration:none;
+
+  padding:9px 12px;
+
+  border-radius:7px;
+
+  font-size:12px;
+
+  font-weight:bold;
+}
+
+.read-article{
+  background:#006400;
+  color:white;
+}
+
+.original{
+  background:#eef3f8;
+  color:#14507b;
+}
+
+
+/* =========================================================
+   FEATURED ARTICLE
+========================================================= */
+
+.featured-article{
+  margin-bottom:25px;
+
+  background:white;
+
+  border-radius:16px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 7px 25px #00000014;
+
+  border:1px solid #e4e8ef;
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+}
+
+.featured-article img{
+  width:100%;
+  height:100%;
+  min-height:290px;
+  object-fit:cover;
+}
+
+.featured-content{
+  padding:28px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.featured-content h2{
+  margin:8px 0 12px;
+
+  color:#006400;
+
+  font-size:28px;
+
+  line-height:1.25;
+}
+
+.featured-content p{
+  color:#555;
+
+  line-height:1.6;
+}
+
+.featured-date{
+  color:#777;
+  font-size:12px;
+}
+
+
+/* =========================================================
+   LOADING / EMPTY / ERROR
+========================================================= */
+
 .loading,
 .empty,
 .error{
   text-align:center;
+
   padding:35px;
+
   background:white;
+
   border-radius:12px;
+
   color:#666;
+
+  grid-column:1/-1;
 }
-.error{color:#a00000}
+
+.error{
+  color:#a00000;
+}
+
+.spinner{
+  width:30px;
+  height:30px;
+
+  border:3px solid #d9e8dd;
+
+  border-top-color:#006400;
+
+  border-radius:50%;
+
+  animation:spin 1s linear infinite;
+
+  margin:0 auto 12px;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   READ MORE
+========================================================= */
+
+.read-more-box{
+  margin-top:10px;
+
+  background:#f8fafc;
+
+  padding:12px;
+
+  border-radius:8px;
+
+  font-size:13px;
+
+  line-height:1.5;
+}
+
+
+/* =========================================================
+   SUBSCRIBE
+========================================================= */
 
 .subscribe{
   margin-top:55px;
+
   background:white;
+
   padding:30px;
+
   border-radius:16px;
-  box-shadow:0 5px 20px #00000010;
+
+  box-shadow:
+    0 5px 20px #00000010;
 }
+
 .subscribe h2{
   color:#006400;
+
   margin-top:0;
 }
+
+.subscribe p{
+  color:#666;
+  line-height:1.5;
+}
+
 .form-grid{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:15px;
 }
+
 .form-group label{
   display:block;
+
   margin-bottom:6px;
+
   font-weight:bold;
+
   font-size:14px;
 }
+
 .form-group input{
   width:100%;
+
   padding:13px;
+
   border:1px solid #ccd3dd;
+
   border-radius:7px;
+
+  font-size:14px;
 }
+
 .interests{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(200px,1fr)
+    );
+
   gap:8px;
+
   margin:15px 0;
 }
+
 .interest{
   background:#f6f8fa;
-  padding:9px;
+
+  padding:10px;
+
   border-radius:7px;
+
+  border:1px solid #e6e9ed;
 }
+
 .interest label{
   font-size:13px;
+
+  cursor:pointer;
 }
+
+.interest input{
+  margin-right:7px;
+}
+
+
+/* =========================================================
+   NOTICE
+========================================================= */
 
 .notice{
   padding:12px;
+
   margin-top:15px;
+
   border-radius:7px;
+
   display:none;
+
+  line-height:1.5;
+
+  font-size:13px;
 }
+
 .success{
   background:#dff7e7;
   color:#07652b;
 }
+
 .fail{
   background:#ffe0e0;
   color:#a00000;
 }
 
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
 footer{
   margin-top:50px;
+
   background:#092617;
+
   color:white;
+
   text-align:center;
-  padding:30px 15px;
+
+  padding:35px 15px;
 }
-footer strong{color:#ffe600}
+
+footer strong{
+  color:#ffe600;
+}
+
+.footer-links{
+  margin:18px 0;
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:15px;
+
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  color:#d7eadc;
+
+  text-decoration:none;
+
+  font-size:13px;
+}
+
+.footer-links a:hover{
+  color:#ffe600;
+}
+
 .admin-link{
   display:inline-block;
+
   margin-top:12px;
+
   color:#b9d8c4;
+
   text-decoration:none;
+
   font-size:12px;
 }
 
-@media(max-width:700px){
-  .nav{flex-direction:column}
-  nav a{margin:0 7px;font-size:13px}
-  .hero h1{font-size:32px}
-  .form-grid{grid-template-columns:1fr}
-  .search-box{flex-direction:column}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px){
+
+  .nav{
+    flex-direction:column;
+
+    align-items:center;
+  }
+
+  nav{
+    justify-content:center;
+  }
+
+  .featured-article{
+    grid-template-columns:1fr;
+  }
+
+  .featured-article img{
+    height:220px;
+    min-height:0;
+  }
+
 }
+
+@media(max-width:700px){
+
+  header{
+    padding:13px 4%;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  nav{
+    gap:9px;
+  }
+
+  nav a{
+    font-size:12px;
+  }
+
+  .hero{
+    padding:55px 15px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .container{
+    padding:0 12px;
+  }
+
+  .search-box{
+    flex-direction:column;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .subscribe{
+    padding:22px 17px;
+  }
+
+  .featured-content{
+    padding:20px;
+  }
+
+  .featured-content h2{
+    font-size:23px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+========================================================= */
+
+@media(max-width:430px){
+
+  .hero h1{
+    font-size:29px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card h3{
+    font-size:18px;
+  }
+
+  .categories{
+    justify-content:flex-start;
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:5px;
+  }
+
+  .cat-btn{
+    white-space:nowrap;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <header>
+
   <div class="nav">
+
     <div class="logo">
+
       SOBANUKIRWA TV
-      <span>ONLINE • ON TIME</span>
+
+      <span>
+        ONLINE • ON TIME
+      </span>
+
     </div>
+
 
     <nav>
-      <a href="#home">Home</a>
-      <a href="#opportunities">Opportunities</a>
-      <a href="#subscribe">Subscribe</a>
-      <a href="admin.html">Admin</a>
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#opportunities">
+        Opportunities
+      </a>
+
+      <a href="#articles">
+        Articles
+      </a>
+
+      <a href="#subscribe">
+        Subscribe
+      </a>
+
+      <a href="admin.html">
+        Admin
+      </a>
+
     </nav>
+
   </div>
+
 </header>
 
-<section class="hero" id="home">
-  <div class="badge">📢 OPPORTUNITIES & INFORMATION</div>
-  <h1>SOBANUKIRWA <span>TV</span></h1>
-  <p>Find opportunities online, on time.</p>
-  <p>Scholarships • Jobs • Internships • Training • Fellowships • Competitions</p>
-</section>
 
-<main class="container" id="opportunities">
 
-  <div class="section-title">
-    <h2>Latest Opportunities</h2>
-    <p>Discover useful opportunities and important announcements.</p>
-  </div>
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-  <div class="categories" id="categories">
-    <button class="cat-btn active" onclick="filterCategory('ALL',this)">All</button>
-  </div>
+<section
+  class="hero"
+  id="home">
 
-  <div class="search-box">
-    <input id="searchInput"
-           type="text"
-           placeholder="Search opportunity, organization or category..."
-           oninput="renderOpportunities()">
-    <button onclick="loadOpportunities()">Refresh</button>
-  </div>
+  <div class="hero-content">
 
-  <div id="opportunitiesList" class="grid">
-    <div class="loading">Loading opportunities...</div>
-  </div>
-
-  <section class="subscribe" id="subscribe">
-    <h2>Subscribe to SOBANUKIRWA TV</h2>
-    <p>
-      Choose the categories you are interested in.
-      You will receive notifications when the admin sends them.
-    </p>
-
-    <div class="form-grid">
-      <div class="form-group">
-        <label>Your Email</label>
-        <input id="email" type="email" placeholder="example@gmail.com">
-      </div>
-
-      <div class="form-group">
-        <label>Your Name (optional)</label>
-        <input id="subscriberName" type="text" placeholder="Your name">
-      </div>
+    <div class="badge">
+      OPPORTUNITIES & INFORMATION
     </div>
 
-    <h3>Select your interests</h3>
+    <h1>
+      SOBANUKIRWA
+      <span>TV</span>
+    </h1>
 
-    <div class="interests" id="interestList"></div>
+    <p>
+      Find opportunities online, on time.
+    </p>
 
-    <button onclick="subscribeUser()">Subscribe</button>
+    <p class="hero-sub">
+      Scholarships • Jobs • Internships • Training •
+      Fellowships • Competitions • Important Information
+    </p>
 
-    <div id="subscribeMessage" class="notice"></div>
-  </section>
+    <div class="hero-buttons">
+
+      <a
+        href="#opportunities"
+        class="hero-btn primary">
+        Explore Opportunities
+      </a>
+
+      <a
+        href="#articles"
+        class="hero-btn secondary">
+        Read Articles
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="container">
+
+
+
+<!-- =========================================================
+     OPPORTUNITIES
+========================================================= -->
+
+<section
+  class="section"
+  id="opportunities">
+
+  <div class="section-title">
+
+    <h2>
+      Latest Opportunities
+    </h2>
+
+    <p>
+      Discover useful opportunities and important announcements.
+    </p>
+
+  </div>
+
+
+  <!-- CATEGORIES -->
+
+  <div
+    class="categories"
+    id="categories">
+
+    <button
+      class="cat-btn active"
+      onclick="filterCategory('ALL',this)">
+
+      All
+
+    </button>
+
+  </div>
+
+
+  <!-- SEARCH -->
+
+  <div class="search-box">
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search opportunity, organization or category..."
+      oninput="renderOpportunities()">
+
+    <button
+      onclick="loadOpportunities()">
+
+      Refresh
+
+    </button>
+
+  </div>
+
+
+  <!-- OPPORTUNITY LIST -->
+
+  <div
+    id="opportunitiesList"
+    class="grid">
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      Loading opportunities...
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ARTICLES
+========================================================= -->
+
+<section
+  class="section"
+  id="articles">
+
+  <div class="section-title">
+
+    <h2>
+      Latest Articles & Information
+    </h2>
+
+    <p>
+      News, announcements, education information and useful updates.
+    </p>
+
+  </div>
+
+
+  <!-- ARTICLE SEARCH -->
+
+  <div class="search-box">
+
+    <input
+      id="articleSearch"
+      type="text"
+      placeholder="Search article, source or category..."
+      oninput="renderArticles()">
+
+    <button
+      onclick="loadArticles()">
+
+      Refresh
+
+    </button>
+
+  </div>
+
+
+  <!-- FEATURED ARTICLE -->
+
+  <div
+    id="featuredArticle">
+
+  </div>
+
+
+  <!-- ARTICLES -->
+
+  <div
+    id="articlesList"
+    class="grid">
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      Loading articles...
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SUBSCRIBE
+========================================================= -->
+
+<section
+  class="subscribe"
+  id="subscribe">
+
+  <h2>
+    Subscribe to SOBANUKIRWA TV
+  </h2>
+
+  <p>
+    Choose the categories you are interested in.
+    You will receive notifications when the admin sends them.
+  </p>
+
+
+  <div class="form-grid">
+
+
+    <div class="form-group">
+
+      <label>
+        Your Email
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        placeholder="example@gmail.com">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Your Name (optional)
+      </label>
+
+      <input
+        id="subscriberName"
+        type="text"
+        placeholder="Your name">
+
+    </div>
+
+
+  </div>
+
+
+  <h3>
+    Select your interests
+  </h3>
+
+
+  <div
+    class="interests"
+    id="interestList">
+
+    <div class="interest">
+      Loading categories...
+    </div>
+
+  </div>
+
+
+  <button
+    onclick="subscribeUser()">
+
+    Subscribe
+
+  </button>
+
+
+  <div
+    id="subscribeMessage"
+    class="notice">
+
+  </div>
+
+</section>
+
+
 
 </main>
 
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
-  <p><strong>SOBANUKIRWA TV</strong></p>
-  <p>ONLINE • ON TIME</p>
-  <p>Useful information. Opportunities. Notifications.</p>
-  <p>© <span id="year"></span> SOBANUKIRWA TV</p>
-  <a class="admin-link" href="admin.html">Admin Panel</a>
+
+  <p>
+    <strong>
+      SOBANUKIRWA TV
+    </strong>
+  </p>
+
+  <p>
+    ONLINE • ON TIME
+  </p>
+
+  <p>
+    Useful information. Opportunities. Notifications.
+  </p>
+
+
+  <div class="footer-links">
+
+    <a href="#home">
+      Home
+    </a>
+
+    <a href="#opportunities">
+      Opportunities
+    </a>
+
+    <a href="#articles">
+      Articles
+    </a>
+
+    <a href="#subscribe">
+      Subscribe
+    </a>
+
+    <a href="admin.html">
+      Admin
+    </a>
+
+  </div>
+
+
+  <p>
+    ©
+    <span id="year"></span>
+    SOBANUKIRWA TV
+  </p>
+
+
+  <a
+    class="admin-link"
+    href="admin.html">
+
+    Administrator Panel
+
+  </a>
+
 </footer>
 
+
+
 <script>
+
+/* =========================================================
+   API CONFIG
+========================================================= */
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxKH0B-LKpUBrZ5Ne8u3M9HoY2-wDdsMfn_zbidYfsxt2Xq1FbKXhDLt4vPuimhq4o/exec";
 
+
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
 let opportunities = [];
+
+let articles = [];
+
 let categories = [];
+
 let currentCategory = "ALL";
 
-document.getElementById("year").textContent = new Date().getFullYear();
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document
+  .getElementById("year")
+  .textContent =
+    new Date().getFullYear();
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
 
 function escapeHTML(value){
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+  return String(
+    value ?? ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
 }
 
-async function apiGet(params={}){
-  const url = new URL(API_URL);
 
-  Object.keys(params).forEach(k=>{
-    if(params[k] !== undefined && params[k] !== null){
-      url.searchParams.set(k,params[k]);
-    }
-  });
+/* =========================================================
+   ATTRIBUTE ESCAPE
+========================================================= */
 
-  const response = await fetch(url.toString());
-  return await response.json();
-}
+function escapeAttribute(value){
 
-async function apiPost(data){
-  const response = await fetch(API_URL,{
-    method:"POST",
-    body:new URLSearchParams(data)
-  });
+  const url =
+    String(
+      value || ""
+    ).trim();
 
-  return await response.json();
-}
 
-async function loadCategories(){
-  try{
-    const result = await apiGet({action:"categories"});
+  /*
+   * Only allow normal HTTP/HTTPS links.
+   */
 
-    if(result.success){
-      categories = result.categories || [];
-    }
-  }catch(e){
-    console.error(e);
+  if(
+    !/^https?:\/\//i.test(url)
+  ){
+
+    return "#";
+
   }
 
-  buildCategoryButtons();
-  buildInterestList();
+
+  return url
+
+    .replace(
+      /"/g,
+      "%22"
+    )
+
+    .replace(
+      /'/g,
+      "%27"
+    )
+
+    .replace(
+      /</g,
+      "%3C"
+    )
+
+    .replace(
+      />/g,
+      "%3E"
+    );
+
 }
 
-function buildCategoryButtons(){
 
-  const box = document.getElementById("categories");
+/* =========================================================
+   API GET
+========================================================= */
 
-  box.innerHTML =
-    `<button class="cat-btn active"
-      onclick="filterCategory('ALL',this)">All</button>`;
+async function apiGet(
+  params={}
+){
 
-  categories.forEach(category=>{
-    const btn = document.createElement("button");
+  const url =
+    new URL(API_URL);
 
-    btn.className = "cat-btn";
-    btn.textContent = category;
-    btn.onclick = ()=>filterCategory(category,btn);
 
-    box.appendChild(btn);
-  });
+  Object.keys(params)
+    .forEach(
+      key=>{
+
+        if(
+          params[key] !==
+          undefined &&
+          params[key] !==
+          null
+        ){
+
+          url.searchParams.set(
+            key,
+            params[key]
+          );
+
+        }
+
+      }
+    );
+
+
+  const response =
+    await fetch(
+      url.toString()
+    );
+
+
+  if(!response.ok){
+
+    throw new Error(
+      "HTTP " +
+      response.status
+    );
+
+  }
+
+
+  return await response.json();
+
 }
 
-function buildInterestList(){
 
-  const box = document.getElementById("interestList");
+/* =========================================================
+   API POST
+========================================================= */
 
-  box.innerHTML = "";
+async function apiPost(
+  data
+){
 
-  categories.forEach(category=>{
+  const response =
+    await fetch(
+      API_URL,
+      {
+        method:"POST",
 
-    const key = normalizeKey(category);
+        body:
+          new URLSearchParams(
+            data
+          )
+      }
+    );
 
-    const div = document.createElement("div");
-    div.className = "interest";
 
-    div.innerHTML = `
-      <label>
-        <input type="checkbox"
-               name="${key}"
-               value="YES">
-        ${escapeHTML(category)}
-      </label>
-    `;
+  if(!response.ok){
 
-    box.appendChild(div);
-  });
+    throw new Error(
+      "HTTP " +
+      response.status
+    );
+
+  }
+
+
+  return await response.json();
+
 }
 
-function normalizeKey(value){
-  return String(value || "")
-    .toLowerCase()
-    .trim()
-    .replace(/&/g,"and")
-    .replace(/[^a-z0-9]+/g,"_")
-    .replace(/^_+|_+$/g,"");
-}
 
-function filterCategory(category,button){
+/* =========================================================
+   LOAD CATEGORIES
+========================================================= */
 
-  currentCategory = category;
-
-  document.querySelectorAll(".cat-btn")
-    .forEach(b=>b.classList.remove("active"));
-
-  button.classList.add("active");
-
-  renderOpportunities();
-}
-
-async function loadOpportunities(){
-
-  const box = document.getElementById("opportunitiesList");
-
-  box.innerHTML =
-    `<div class="loading">Loading opportunities...</div>`;
+async function loadCategories(){
 
   try{
 
-    const result = await apiGet({
-      action:"opportunities"
-    });
+    const result =
+      await apiGet({
+        action:"categories"
+      });
 
-    if(!result.success){
-      throw new Error(result.message || "Failed");
+
+    if(
+      result.success
+    ){
+
+      categories =
+        result.categories ||
+        [];
+
+    }else{
+
+      categories=[];
+
     }
-
-    opportunities = result.opportunities || [];
-
-    renderOpportunities();
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Categories:",
+      error
+    );
+
+    categories=[];
+
+  }
+
+
+  buildCategoryButtons();
+
+  buildInterestList();
+
+}
+
+
+/* =========================================================
+   BUILD CATEGORY BUTTONS
+========================================================= */
+
+function buildCategoryButtons(){
+
+  const box =
+    document.getElementById(
+      "categories"
+    );
+
+
+  box.innerHTML = `
+
+    <button
+      class="cat-btn active"
+      onclick="filterCategory('ALL',this)">
+
+      All
+
+    </button>
+
+  `;
+
+
+  categories.forEach(
+    category=>{
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "cat-btn";
+
+
+      button.textContent =
+        category;
+
+
+      button.onclick =
+        function(){
+
+          filterCategory(
+            category,
+            button
+          );
+
+        };
+
+
+      box.appendChild(
+        button
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   BUILD SUBSCRIBE INTERESTS
+========================================================= */
+
+function buildInterestList(){
+
+  const box =
+    document.getElementById(
+      "interestList"
+    );
+
+
+  if(!categories.length){
 
     box.innerHTML = `
-      <div class="error">
-        Unable to load opportunities.<br>
-        Please check the Apps Script deployment.
+
+      <div class="interest">
+
+        No categories available.
+
       </div>
+
     `;
+
+    return;
+
   }
+
+
+  box.innerHTML="";
+
+
+  categories.forEach(
+    category=>{
+
+      const key =
+        normalizeKey(
+          category
+        );
+
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "interest";
+
+
+      div.innerHTML = `
+
+        <label>
+
+          <input
+            type="checkbox"
+            name="${escapeHTML(key)}"
+            value="YES">
+
+          ${escapeHTML(
+            category
+          )}
+
+        </label>
+
+      `;
+
+
+      box.appendChild(
+        div
+      );
+
+    }
+  );
+
 }
+
+
+/* =========================================================
+   NORMALIZE CATEGORY KEY
+========================================================= */
+
+function normalizeKey(
+  value
+){
+
+  return String(
+    value || ""
+  )
+
+  .toLowerCase()
+
+  .trim()
+
+  .replace(
+    /&/g,
+    "and"
+  )
+
+  .replace(
+    /[^a-z0-9]+/g,
+    "_"
+  )
+
+  .replace(
+    /^_+|_+$/g,
+    ""
+  );
+
+}
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+function filterCategory(
+  category,
+  button
+){
+
+  currentCategory =
+    category;
+
+
+  document
+    .querySelectorAll(
+      ".cat-btn"
+    )
+    .forEach(
+      btn=>{
+        btn.classList.remove(
+          "active"
+        );
+      }
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  renderOpportunities();
+
+}
+
+
+/* =========================================================
+   LOAD OPPORTUNITIES
+========================================================= */
+
+async function loadOpportunities(){
+
+  const box =
+    document.getElementById(
+      "opportunitiesList"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      Loading opportunities...
+
+    </div>
+
+  `;
+
+
+  try{
+
+    /*
+     * Public website requests opportunities.
+     */
+
+    let result =
+      await apiGet({
+        action:"opportunities"
+      });
+
+
+    /*
+     * Fallback for backend using
+     * getOpportunities.
+     */
+
+    if(
+      !result.success
+    ){
+
+      result =
+        await apiGet({
+          action:"getOpportunities"
+        });
+
+    }
+
+
+    if(
+      result.success === false
+    ){
+
+      throw new Error(
+        result.message ||
+        "Unable to load opportunities."
+      );
+
+    }
+
+
+    opportunities =
+      result.opportunities ||
+      [];
+
+
+    renderOpportunities();
+
+
+  }catch(error){
+
+    console.error(
+      "Opportunities:",
+      error
+    );
+
+
+    box.innerHTML = `
+
+      <div class="error">
+
+        Unable to load opportunities.
+
+        <br><br>
+
+        Please try again later.
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER OPPORTUNITIES
+========================================================= */
 
 function renderOpportunities(){
 
-  const box = document.getElementById("opportunitiesList");
+  const box =
+    document.getElementById(
+      "opportunitiesList"
+    );
+
 
   const search =
-    document.getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+    document
+      .getElementById(
+        "searchInput"
+      )
+      .value
+      .toLowerCase()
+      .trim();
 
-  let list = opportunities.filter(item=>{
 
-    const category = String(item.Category || "");
+  const list =
+    opportunities.filter(
+      item=>{
 
-    const matchesCategory =
-      currentCategory === "ALL" ||
-      category === currentCategory;
+        const category =
+          String(
+            item.Category ||
+            ""
+          );
 
-    const text = `
-      ${item.Title || ""}
-      ${item.Organization || ""}
-      ${item.Description || ""}
-      ${item.Category || ""}
-    `.toLowerCase();
 
-    return matchesCategory && text.includes(search);
-  });
+        const categoryMatch =
+          currentCategory ===
+          "ALL" ||
+
+          category.toLowerCase()
+          ===
+          currentCategory.toLowerCase();
+
+
+        const text = `
+
+          ${item.Title || ""}
+
+          ${item.Organization || ""}
+
+          ${item.Description || ""}
+
+          ${item.Category || ""}
+
+          ${item.Requirements || ""}
+
+        `.toLowerCase();
+
+
+        const searchMatch =
+          !search ||
+          text.includes(
+            search
+          );
+
+
+        /*
+         * Public page only shows
+         * published opportunities
+         * when Published field exists.
+         */
+
+        const publishedValue =
+          String(
+            item.Published ??
+            ""
+          ).toUpperCase();
+
+
+        const publishedMatch =
+          publishedValue === "" ||
+          publishedValue === "YES" ||
+          publishedValue === "TRUE" ||
+          publishedValue === "PUBLISHED";
+
+
+        return (
+          categoryMatch &&
+          searchMatch &&
+          publishedMatch
+        );
+
+      }
+    );
+
 
   if(!list.length){
 
     box.innerHTML = `
+
       <div class="empty">
+
         No opportunities found.
+
       </div>
+
     `;
 
     return;
+
   }
 
-  box.innerHTML = list.map(item=>{
 
-    const status = String(item.Status || "OPEN");
+  box.innerHTML =
+    list.map(
+      item=>{
 
-    let statusClass = "open";
+        return opportunityCard(
+          item
+        );
 
-    if(status === "CLOSED") statusClass = "closed";
-    else if(status === "UPCOMING") statusClass = "upcoming";
-    else if(status === "CLOSING SOON") statusClass = "closing";
+      }
+    ).join("");
 
-    const deadline =
-      item["Deadline Date"]
-      ? `${item["Deadline Date"]} ${item["Deadline Time"] || ""}`
+}
+
+
+/* =========================================================
+   OPPORTUNITY CARD
+========================================================= */
+
+function opportunityCard(
+  item
+){
+
+  const status =
+    String(
+      item.Status ||
+      "OPEN"
+    ).toUpperCase();
+
+
+  let statusClass =
+    "open";
+
+
+  if(
+    status ===
+    "CLOSED"
+  ){
+
+    statusClass =
+      "closed";
+
+  }
+
+  else if(
+    status ===
+    "UPCOMING"
+  ){
+
+    statusClass =
+      "upcoming";
+
+  }
+
+  else if(
+    status ===
+    "CLOSING SOON"
+  ){
+
+    statusClass =
+      "closing";
+
+  }
+
+
+  const deadlineDate =
+    item["Deadline Date"] ||
+    item.DeadlineDate ||
+    "";
+
+
+  const deadlineTime =
+    item["Deadline Time"] ||
+    item.DeadlineTime ||
+    "";
+
+
+  const deadline =
+    deadlineDate
+
+      ? (
+          deadlineDate +
+          (
+            deadlineTime
+              ? " " +
+                deadlineTime
+              : ""
+          )
+        )
+
       : "Not specified";
 
-    return `
-      <article class="card">
 
-        <div class="card-top">
-          <span class="category">
-            ${escapeHTML(item.Category || "Other")}
-          </span>
+  const applicationUrl =
+    item["Application URL"] ||
+    item.ApplicationURL ||
+    item.ApplicationUrl ||
+    "";
 
-          <span class="status ${statusClass}">
-            ${escapeHTML(status)}
-          </span>
+
+  const sourceUrl =
+    item["Source URL"] ||
+    item.SourceURL ||
+    item.SourceUrl ||
+    "";
+
+
+  const featured =
+    String(
+      item.Featured ||
+      ""
+    ).toUpperCase();
+
+
+  return `
+
+    <article
+      class="card">
+
+
+      <div
+        class="card-top">
+
+        <span
+          class="category">
+
+          ${escapeHTML(
+            item.Category ||
+            "Other"
+          )}
+
+        </span>
+
+
+        <span
+          class="status ${statusClass}">
+
+          ${escapeHTML(
+            status
+          )}
+
+        </span>
+
+      </div>
+
+
+      <div
+        class="card-body">
+
+
+        ${
+          featured === "YES"
+          ?
+
+          `<span
+             class="featured-label">
+
+             FEATURED
+
+           </span>`
+
+          :
+
+          ""
+        }
+
+
+        <h3>
+
+          ${escapeHTML(
+            item.Title ||
+            "Untitled Opportunity"
+          )}
+
+        </h3>
+
+
+        <div
+          class="org">
+
+          🏢
+          ${escapeHTML(
+            item.Organization ||
+            ""
+          )}
+
         </div>
 
-        <div class="card-body">
 
-          <h3>
-            ${escapeHTML(item.Title || "Untitled Opportunity")}
-          </h3>
+        <div
+          class="desc">
 
-          <div class="org">
-            🏢 ${escapeHTML(item.Organization || "")}
-          </div>
-
-          <div class="desc">
-            ${escapeHTML(item.Description || "No description available.")}
-          </div>
-
-          <div class="deadline">
-            <strong>Deadline:</strong><br>
-            ${escapeHTML(deadline)}
-          </div>
-
-          <div class="card-actions">
-
-            ${
-              item["Application URL"]
-              ? `<a class="apply"
-                    href="${escapeAttribute(item["Application URL"])}"
-                    target="_blank"
-                    rel="noopener">
-                    Apply Now
-                 </a>`
-              : ""
-            }
-
-            ${
-              item["Source URL"]
-              ? `<a class="source"
-                    href="${escapeAttribute(item["Source URL"])}"
-                    target="_blank"
-                    rel="noopener">
-                    Source
-                 </a>`
-              : ""
-            }
-
-          </div>
+          ${escapeHTML(
+            item.Description ||
+            "No description available."
+          )}
 
         </div>
 
-      </article>
+
+        <div
+          class="deadline">
+
+          <strong>
+            Deadline:
+          </strong>
+
+          <br>
+
+          ${escapeHTML(
+            deadline
+          )}
+
+        </div>
+
+
+        <div
+          class="card-actions">
+
+
+          ${
+            applicationUrl
+
+            ?
+
+            `<a
+              class="apply"
+              href="${escapeAttribute(
+                applicationUrl
+              )}"
+              target="_blank"
+              rel="noopener noreferrer">
+
+              Apply Now
+
+            </a>`
+
+            :
+
+            ""
+          }
+
+
+          ${
+            sourceUrl
+
+            ?
+
+            `<a
+              class="source"
+              href="${escapeAttribute(
+                sourceUrl
+              )}"
+              target="_blank"
+              rel="noopener noreferrer">
+
+              Source
+
+            </a>`
+
+            :
+
+            ""
+          }
+
+
+        </div>
+
+
+      </div>
+
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   LOAD ARTICLES
+========================================================= */
+
+async function loadArticles(){
+
+  const listBox =
+    document.getElementById(
+      "articlesList"
+    );
+
+
+  const featuredBox =
+    document.getElementById(
+      "featuredArticle"
+    );
+
+
+  listBox.innerHTML = `
+
+    <div class="loading">
+
+      <div class="spinner"></div>
+
+      Loading articles...
+
+    </div>
+
+  `;
+
+
+  featuredBox.innerHTML="";
+
+
+  try{
+
+    let result =
+      await apiGet({
+        action:"getArticles",
+        status:"PUBLISHED"
+      });
+
+
+    /*
+     * Fallback for backend that returns
+     * all articles.
+     */
+
+    if(
+      !result.success &&
+      !Array.isArray(
+        result.articles
+      )
+    ){
+
+      result =
+        await apiGet({
+          action:"articles",
+          status:"PUBLISHED"
+        });
+
+    }
+
+
+    if(
+      result.success === false
+    ){
+
+      throw new Error(
+        result.message ||
+        "Unable to load articles."
+      );
+
+    }
+
+
+    articles =
+      result.articles ||
+      [];
+
+
+    /*
+     * IMPORTANT:
+     * Public website only displays
+     * PUBLISHED articles.
+     */
+
+    articles =
+      articles.filter(
+        item=>{
+
+          return String(
+            item.Status ||
+            ""
+          ).toUpperCase()
+          ===
+          "PUBLISHED";
+
+        }
+      );
+
+
+    renderArticles();
+
+
+  }catch(error){
+
+    console.error(
+      "Articles:",
+      error
+    );
+
+
+    listBox.innerHTML = `
+
+      <div class="error">
+
+        Unable to load articles.
+
+        <br><br>
+
+        Please try again later.
+
+      </div>
+
     `;
 
-  }).join("");
-}
-
-function escapeAttribute(value){
-
-  const v = String(value || "");
-
-  if(!/^https?:\/\//i.test(v)){
-    return "#";
   }
 
-  return v
-    .replace(/"/g,"%22")
-    .replace(/'/g,"%27");
 }
+
+
+/* =========================================================
+   RENDER ARTICLES
+========================================================= */
+
+function renderArticles(){
+
+  const box =
+    document.getElementById(
+      "articlesList"
+    );
+
+
+  const featuredBox =
+    document.getElementById(
+      "featuredArticle"
+    );
+
+
+  const search =
+    document
+      .getElementById(
+        "articleSearch"
+      )
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const list =
+    articles.filter(
+      item=>{
+
+        const text = `
+
+          ${item.Title || ""}
+
+          ${item.Summary || ""}
+
+          ${item.Content || ""}
+
+          ${item.Category || ""}
+
+          ${item["Source Name"] || ""}
+
+          ${item.Source || ""}
+
+        `.toLowerCase();
+
+
+        return (
+          !search ||
+          text.includes(
+            search
+          )
+        );
+
+      }
+    );
+
+
+  /*
+   * Featured article
+   */
+
+  const featured =
+    list.find(
+      item=>
+
+        String(
+          item.Featured ||
+          ""
+        ).toUpperCase()
+        ===
+        "YES"
+
+    );
+
+
+  if(featured){
+
+    featuredBox.innerHTML =
+      featuredArticleHTML(
+        featured
+      );
+
+  }else{
+
+    featuredBox.innerHTML="";
+
+  }
+
+
+  /*
+   * Remove featured item from
+   * normal cards to avoid duplicate.
+   */
+
+  const normalList =
+    featured
+
+      ? list.filter(
+          item=>
+            getArticleId(item)
+            !==
+            getArticleId(featured)
+        )
+
+      : list;
+
+
+  if(!normalList.length){
+
+    if(!featured){
+
+      box.innerHTML = `
+
+        <div class="empty">
+
+          No published articles found.
+
+        </div>
+
+      `;
+
+    }else{
+
+      box.innerHTML="";
+
+    }
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    normalList.map(
+      item=>
+
+        articleCard(
+          item
+        )
+
+    ).join("");
+
+}
+
+
+/* =========================================================
+   FEATURED ARTICLE HTML
+========================================================= */
+
+function featuredArticleHTML(
+  item
+){
+
+  const title =
+    item.Title ||
+    "Article";
+
+
+  const summary =
+    item.Summary ||
+    item.Content ||
+    "";
+
+
+  const source =
+    item["Source Name"] ||
+    item.Source ||
+    "";
+
+
+  const date =
+    item["Published At"] ||
+    item["Created At"] ||
+    item.CreatedAt ||
+    "";
+
+
+  const originalUrl =
+    item["Original URL"] ||
+    item.OriginalURL ||
+    item["Source URL"] ||
+    item.SourceURL ||
+    "";
+
+
+  const image =
+    item["Image URL"] ||
+    item.ImageURL ||
+    item.Image ||
+    "";
+
+
+  const imageHTML =
+    image
+
+    ?
+
+    `<img
+       src="${escapeAttribute(
+         image
+       )}"
+       alt="${escapeHTML(
+         title
+       )}"
+       loading="lazy"
+       onerror="this.style.display='none';">`
+
+    :
+
+    `<div
+       class="article-image-placeholder">
+
+       STV
+
+     </div>`;
+
+
+  return `
+
+    <article
+      class="featured-article">
+
+
+      <div>
+
+        ${imageHTML}
+
+      </div>
+
+
+      <div
+        class="featured-content">
+
+
+        <div
+          class="article-meta">
+
+          <span
+            class="article-category">
+
+            ${escapeHTML(
+              item.Category ||
+              "Information"
+            )}
+
+          </span>
+
+          <span
+            class="featured-date">
+
+            ${escapeHTML(
+              date
+            )}
+
+          </span>
+
+        </div>
+
+
+        <h2>
+
+          ${escapeHTML(
+            title
+          )}
+
+        </h2>
+
+
+        <p>
+
+          ${escapeHTML(
+            summary
+          )}
+
+        </p>
+
+
+        <div
+          class="article-source">
+
+          ${
+            source
+              ? "Source: " +
+                escapeHTML(source)
+              : ""
+          }
+
+        </div>
+
+
+        <div
+          class="article-actions">
+
+
+          ${
+            originalUrl
+
+            ?
+
+            `<a
+              class="original"
+              href="${escapeAttribute(
+                originalUrl
+              )}"
+              target="_blank"
+              rel="noopener noreferrer">
+
+              Read Original Article
+
+            </a>`
+
+            :
+
+            ""
+
+          }
+
+
+        </div>
+
+
+      </div>
+
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ARTICLE CARD
+========================================================= */
+
+function articleCard(
+  item
+){
+
+  const title =
+    item.Title ||
+    "Article";
+
+
+  const summary =
+    item.Summary ||
+    item.Content ||
+    "No summary available.";
+
+
+  const source =
+    item["Source Name"] ||
+    item.Source ||
+    "";
+
+
+  const date =
+    item["Published At"] ||
+    item["Created At"] ||
+    item.CreatedAt ||
+    "";
+
+
+  const originalUrl =
+    item["Original URL"] ||
+    item.OriginalURL ||
+    item["Source URL"] ||
+    item.SourceURL ||
+    "";
+
+
+  const image =
+    item["Image URL"] ||
+    item.ImageURL ||
+    item.Image ||
+    "";
+
+
+  const imageHTML =
+    image
+
+    ?
+
+    `<img
+       class="article-image"
+       src="${escapeAttribute(
+         image
+       )}"
+       alt="${escapeHTML(
+         title
+       )}"
+       loading="lazy"
+       onerror="this.outerHTML='<div class=&quot;article-image-placeholder&quot;>STV</div>';">`
+
+    :
+
+    `<div
+       class="article-image-placeholder">
+
+       STV
+
+     </div>`;
+
+
+  const shortSummary =
+    summary.length > 260
+
+      ?
+
+      summary.substring(
+        0,
+        260
+      ) + "..."
+
+      :
+
+      summary;
+
+
+  return `
+
+    <article
+      class="article-card">
+
+
+      ${imageHTML}
+
+
+      <div
+        class="article-body">
+
+
+        <div
+          class="article-meta">
+
+          <span
+            class="article-category">
+
+            ${escapeHTML(
+              item.Category ||
+              "Information"
+            )}
+
+          </span>
+
+
+          <span>
+
+            ${escapeHTML(
+              date
+            )}
+
+          </span>
+
+        </div>
+
+
+        <h3>
+
+          ${escapeHTML(
+            title
+          )}
+
+        </h3>
+
+
+        <div
+          class="article-summary">
+
+          ${escapeHTML(
+            shortSummary
+          )}
+
+        </div>
+
+
+        ${
+          source
+
+          ?
+
+          `<div
+             class="article-source">
+
+             Source:
+             ${escapeHTML(
+               source
+             )}
+
+           </div>`
+
+          :
+
+          ""
+
+        }
+
+
+        <div
+          class="article-actions">
+
+
+          ${
+            originalUrl
+
+            ?
+
+            `<a
+              class="original"
+              href="${escapeAttribute(
+                originalUrl
+              )}"
+              target="_blank"
+              rel="noopener noreferrer">
+
+              Read Original Article
+
+            </a>`
+
+            :
+
+            ""
+
+          }
+
+
+        </div>
+
+
+      </div>
+
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ARTICLE ID
+========================================================= */
+
+function getArticleId(
+  item
+){
+
+  return String(
+    item.ID ||
+    item.Id ||
+    item.id ||
+    item.Title ||
+    ""
+  );
+
+}
+
+
+/* =========================================================
+   SUBSCRIBE
+========================================================= */
 
 async function subscribeUser(){
 
   const email =
-    document.getElementById("email").value.trim();
+    document
+      .getElementById(
+        "email"
+      )
+      .value
+      .trim();
+
 
   const name =
-    document.getElementById("subscriberName").value.trim();
+    document
+      .getElementById(
+        "subscriberName"
+      )
+      .value
+      .trim();
+
 
   const message =
-    document.getElementById("subscribeMessage");
+    document.getElementById(
+      "subscribeMessage"
+    );
+
 
   if(!email){
 
@@ -708,18 +3273,68 @@ async function subscribeUser(){
     );
 
     return;
+
   }
 
-  const selected = {};
+
+  /*
+   * Basic email validation.
+   */
+
+  const emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+  if(
+    !emailPattern.test(
+      email
+    )
+  ){
+
+    showMessage(
+      message,
+      "Please enter a valid email address.",
+      false
+    );
+
+    return;
+
+  }
+
+
+  const selected={};
+
 
   document
-    .querySelectorAll("#interestList input[type=checkbox]")
-    .forEach(cb=>{
-      selected[cb.name] =
-        cb.checked ? "YES" : "NO";
-    });
+    .querySelectorAll(
+      "#interestList input[type=checkbox]"
+    )
+    .forEach(
+      checkbox=>{
 
-  if(!Object.values(selected).includes("YES")){
+        selected[
+          checkbox.name
+        ] =
+          checkbox.checked
+            ? "YES"
+            : "NO";
+
+      }
+    );
+
+
+  const selectedCount =
+    Object.values(
+      selected
+    ).filter(
+      value =>
+        value === "YES"
+    ).length;
+
+
+  if(
+    selectedCount === 0
+  ){
 
     showMessage(
       message,
@@ -728,73 +3343,185 @@ async function subscribeUser(){
     );
 
     return;
+
   }
 
-  const data = {
+
+  const data={
+
     action:"subscribe",
+
     email:email,
+
     name:name
+
   };
 
-  Object.assign(data,selected);
+
+  Object.assign(
+    data,
+    selected
+  );
+
 
   try{
 
-    const result = await apiPost(data);
+    const result =
+      await apiPost(
+        data
+      );
 
-    if(result.success){
+
+    if(
+      result.success
+    ){
 
       showMessage(
         message,
-        result.message || "Subscription successful!",
+        result.message ||
+        "Subscription successful!",
         true
       );
 
-      document.getElementById("email").value="";
-      document.getElementById("subscriberName").value="";
 
       document
-        .querySelectorAll("#interestList input")
-        .forEach(cb=>cb.checked=false);
+        .getElementById(
+          "email"
+        )
+        .value="";
+
+
+      document
+        .getElementById(
+          "subscriberName"
+        )
+        .value="";
+
+
+      document
+        .querySelectorAll(
+          "#interestList input"
+        )
+        .forEach(
+          checkbox=>{
+
+            checkbox.checked=false;
+
+          }
+        );
+
 
     }else{
 
       showMessage(
         message,
-        result.message || "Subscription failed.",
+        result.message ||
+        "Subscription failed.",
         false
       );
+
     }
+
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Subscription:",
+      error
+    );
+
 
     showMessage(
       message,
       "Connection error. Please try again.",
       false
     );
+
   }
+
 }
 
-function showMessage(element,text,success){
 
-  element.textContent = text;
-  element.style.display = "block";
+/* =========================================================
+   SHOW MESSAGE
+========================================================= */
+
+function showMessage(
+  element,
+  text,
+  success
+){
+
+  if(!element){
+    return;
+  }
+
+
+  element.textContent =
+    text;
+
+
+  element.style.display =
+    "block";
+
 
   element.className =
-    "notice " + (success ? "success" : "fail");
+    "notice " +
+    (
+      success
+        ? "success"
+        : "fail"
+    );
+
 }
+
+
+/* =========================================================
+   START APPLICATION
+========================================================= */
 
 async function start(){
 
-  await loadCategories();
-  await loadOpportunities();
+  try{
+
+    /*
+     * Load categories first.
+     */
+
+    await loadCategories();
+
+
+    /*
+     * Load public opportunities
+     * and published articles.
+     */
+
+    await Promise.allSettled([
+
+      loadOpportunities(),
+
+      loadArticles()
+
+    ]);
+
+  }catch(error){
+
+    console.error(
+      "Application:",
+      error
+    );
+
+  }
 
 }
 
+
+/* =========================================================
+   START
+========================================================= */
+
 start();
+
 </script>
 
 </body>
